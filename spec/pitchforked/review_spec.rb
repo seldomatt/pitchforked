@@ -13,7 +13,7 @@ describe Review do
 
     subject do 
       Review.new.tap do |r| 
-        r.album_id = 1
+        r.album_id = album.id
       end
     end
 
