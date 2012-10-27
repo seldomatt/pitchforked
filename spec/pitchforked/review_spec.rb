@@ -1,4 +1,4 @@
-require_relative '../review'
+require 'spec_helper'
 
 describe Review do 
 
