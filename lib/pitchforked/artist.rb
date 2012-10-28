@@ -1,6 +1,7 @@
 require_relative 'album'
 
 class Artist 
+  include Unique
   attr_accessor :id, :name
 
   def initialize

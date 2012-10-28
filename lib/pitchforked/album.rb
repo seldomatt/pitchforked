@@ -1,5 +1,6 @@
 
 class Album 
+  include Unique
   attr_accessor :id, :name, :artist_id, :label_id
 
   def initialize

@@ -1,6 +1,7 @@
 require_relative 'album'
 
 class Review 
+  include Unique
   attr_accessor :id, :url, :rating, :year, :author, :body, :album_id
 
   def initialize
