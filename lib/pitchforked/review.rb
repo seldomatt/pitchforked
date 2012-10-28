@@ -12,7 +12,7 @@ class Review
   end
 
   def find_album
-    Album.all.select {|a| a.id == self.album_id }.first
+    Album.all.detect {|a| a.id == self.album_id }
   end
 
 
