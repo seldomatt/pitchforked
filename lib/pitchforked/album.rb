@@ -1,6 +1,7 @@
 
 class Album 
-  include Unique
+  extend Unique
+  include PrimKey
   attr_accessor :id, :name, :artist_id, :label_id
 
   def initialize

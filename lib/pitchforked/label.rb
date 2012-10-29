@@ -1,7 +1,8 @@
 require_relative 'album'
 
 class Label 
-  include Unique
+  extend Unique
+  include PrimKey
   attr_accessor :id, :name
 
   def initialize
