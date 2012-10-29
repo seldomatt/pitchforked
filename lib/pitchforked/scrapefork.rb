@@ -10,8 +10,18 @@ require_relative 'album'
 require_relative 'artist'
 require_relative 'label'
 
+indexpage = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/1/"))
+reviewlinks = []
+indexpage.css(".object-grid ul li a").each do |review| 
+  reviewlinks << review["href"] 
+end
 
-doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/17205-luxury-problems/"))
+reviewlinks.each do |review_link|
+
+
+
+
+doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
   review = Review.new
   album = Album.new
   artist = Artist.new
@@ -19,7 +29,7 @@ doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/17205-luxury-prob
 
   review.id = review.primary_key_iterator
   review.rating = doc.css(".score").text.to_f
-  if doc.css(".bnm-label").text.include?("Best")
+  if doc.css(".bnm-label").text.include?("Best New Music")
     review.bnm = 1
   else
     review.bnm = 0
@@ -41,3 +51,4 @@ doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/17205-luxury-prob
   album.save
   artist.save
   label.save
+end
