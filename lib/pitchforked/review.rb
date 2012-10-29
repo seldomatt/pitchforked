@@ -3,7 +3,12 @@ require_relative 'album'
 class Review 
   extend Unique
   include PrimKey
+  include ActiveWreckord
   attr_accessor :id, :url, :rating, :year, :author, :body, :album_id
+
+  def self.table 
+    "reviews"
+  end
 
   def initialize
     self.class.all << self
