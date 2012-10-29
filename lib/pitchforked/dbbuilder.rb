@@ -1,12 +1,13 @@
 require 'sqlite3'
 
-db = SQLite3::Database.new("pitchforked.db")
+db = SQLite3::Database.open("pitchforked.db")
 
 sql = <<SQL
 CREATE table reviews
 (   id INTEGER, 
     url TEXT, 
     rating FLOAT, 
+    bnm INTEGER,
     year INTEGER, 
     author TEXT, 
     body TEXT, 

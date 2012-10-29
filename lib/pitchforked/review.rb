@@ -4,7 +4,7 @@ class Review
   extend Unique
   include PrimKey
   include ActiveWreckord
-  attr_accessor :id, :url, :rating, :year, :author, :body, :album_id
+  attr_accessor :id, :url, :rating, :bnm, :year, :author, :body, :album_id
 
   def self.table 
     "reviews"

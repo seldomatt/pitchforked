@@ -11,7 +11,7 @@ require_relative 'artist'
 require_relative 'label'
 
 
-doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/17262-banks/"))
+doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/17205-luxury-problems/"))
   review = Review.new
   album = Album.new
   artist = Artist.new
@@ -19,6 +19,11 @@ doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/17262-banks/"))
 
   review.id = review.primary_key_iterator
   review.rating = doc.css(".score").text.to_f
+  if doc.css(".bnm-label").text.include?("Best")
+    review.bnm = 1
+  else
+    review.bnm = 0
+  end
   review.year = doc.css(".pub-date").text.split(",").last.strip
   review.author = doc.css("h4").children[1].text
   review.body = doc.css(".editorial").text

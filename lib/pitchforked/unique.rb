@@ -9,7 +9,7 @@ module Unique
   end
 
   def find(name)
-    self.all.select {|o| o.name == name }.first
+    self.all.detect {|o| o.name == name }
   end
 
   def create_unique(name)
