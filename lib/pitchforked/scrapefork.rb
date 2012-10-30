@@ -13,13 +13,19 @@ require_relative 'label'
 reviewlinks = []
 n = 1
 doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
-# while doc.css(".next-container").first.children[1]["href"]
-while doc.css(".next-container").text.include?("Next")
-  doc.css(".object-grid ul li a").each do |review|
+while doc.css(".next-container").text
+  if doc.css(".next-container").text.include?("Next")
+    doc.css(".object-grid ul li a").each do |review|
     reviewlinks << review["href"]
+    end
+    n += 1
+    doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
+  else
+    doc.css(".object-grid ul li a").each do |review|
+    reviewlinks << review["href"]
+    end
+    break
   end
-  n += 1
-  doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
 end
 
 # indexpage = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/1/"))
