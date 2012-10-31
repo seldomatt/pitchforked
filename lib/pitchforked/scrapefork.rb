@@ -28,21 +28,12 @@ while doc.css(".next-container").text
   end
 end
 
-# indexpage = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/1/"))
-# reviewlinks = []
-# indexpage.css(".object-grid ul li a").each do |review| 
-#   reviewlinks << review["href"] 
-# end
-
 reviewlinks.each do |review_link|
-
-
-
 
 doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
   review = Review.new
   album = Album.new
-  artist = Artist.new
+  # artist = Artist.new
   label = Label.new
 
   review.id = review.primary_key_iterator
@@ -57,16 +48,23 @@ doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
   review.body = doc.css(".editorial").text
   album.id = album.primary_key_iterator
   album.name = doc.css("h2").first.children.text
-  artist.id = artist.primary_key_iterator
-  artist.name = doc.css("h1").first.children.text
-  label.id = label.primary_key_iterator
-  label.name = doc.css("h3").first.children.text.split(";").first
+  artist = Artist.create_unique(doc.css("h1").first.children.text)
+  artist.id ||= artist.primary_key_iterator
+  # artist.name = doc.css("h1").first.children.text
+  label = Label.create_unique(doc.css("h3").first.children.text.split(";").first)
+  label.id ||= label.primary_key_iterator
+  # label.name = doc.css("h3").first.children.text.split(";").first
   review.album_id = album.id
   album.artist_id = artist.id
   album.label_id = label.id
 
   review.save
   album.save
-  artist.save
-  label.save
+  unless Artist.include?(artist.name)
+    artist.save
+  end
+  unless Label.include?(label.name) 
+    label.save
+  end
+
 end
