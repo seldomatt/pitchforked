@@ -2,7 +2,8 @@
 class Album 
   extend Unique
   include PrimKey
-  include ActiveWreckord
+  include ActiveWreckord::InstanceMethods
+  extend ActiveWreckord::ClassMethods
   attr_accessor :id, :name, :artist_id, :label_id
 
   def self.table

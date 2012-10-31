@@ -3,7 +3,8 @@ require_relative 'album'
 class Review 
   extend Unique
   include PrimKey
-  include ActiveWreckord
+  include ActiveWreckord::InstanceMethods
+  extend ActiveWreckord::ClassMethods
   attr_accessor :id, :url, :rating, :bnm, :year, :author, :body, :album_id
 
   def self.table 

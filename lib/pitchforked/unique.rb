@@ -8,15 +8,17 @@ module Unique
     end
   end
 
-  def find(name)
+  def find_by_name(name)
     self.all.detect {|o| o.name == name }
   end
 
   def create_unique(name)
     if self.include?(name)
-      self.find(name)
+      self.find_by_name(name)
     else
-      self.new.tap{|o| o.name = name}
+      self.new.tap do |o| 
+        o.name = name
+      end
     end
   end
 

@@ -10,23 +10,26 @@ require_relative 'album'
 require_relative 'artist'
 require_relative 'label'
 
-reviewlinks = []
-n = 1
-doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
-while doc.css(".next-container").text
-  if doc.css(".next-container").text.include?("Next")
-    doc.css(".object-grid ul li a").each do |review|
-    reviewlinks << review["href"]
-    end
-    n += 1
-    doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
-  else
-    doc.css(".object-grid ul li a").each do |review|
-    reviewlinks << review["href"]
-    end
-    break
-  end
-end
+# reviewlinks = []
+# n = 1
+# doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
+# while doc.css(".next-container").text
+#   if doc.css(".next-container").text.include?("Next")
+#     doc.css(".object-grid ul li a").each do |review|
+#     reviewlinks << review["href"]
+#     end
+#     n += 1
+#     doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
+#   else
+#     doc.css(".object-grid ul li a").each do |review|
+#     reviewlinks << review["href"]
+#     end
+#     break
+#   end
+# end
+
+reviewlinks = ["/reviews/albums/10082-fluorescent-grey-ep/", "/reviews/albums/12991-rainwater-cassette-exchange/"]
+
 
 reviewlinks.each do |review_link|
 
@@ -34,7 +37,7 @@ doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
   review = Review.new
   album = Album.new
   # artist = Artist.new
-  label = Label.new
+  # label = Label.new
 
   review.id = review.primary_key_iterator
   review.rating = doc.css(".score").text.to_f
@@ -60,10 +63,10 @@ doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
 
   review.save
   album.save
-  unless Artist.include?(artist.name)
+  unless Artist.find(artist.id)
     artist.save
   end
-  unless Label.include?(label.name) 
+  unless Label.find(label.id) 
     label.save
   end
 

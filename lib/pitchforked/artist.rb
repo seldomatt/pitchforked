@@ -3,7 +3,9 @@ require_relative 'album'
 class Artist 
   extend Unique
   include PrimKey
-  include ActiveWreckord
+  include ActiveWreckord::InstanceMethods
+  extend ActiveWreckord::ClassMethods
+  
   attr_accessor :id, :name
 
   def self.table
