@@ -1,8 +1,7 @@
 require_relative 'album'
 
 class Artist 
-  extend Unique
-  include PrimKey
+  # extend Unique
   include ActiveWreckord::InstanceMethods
   extend ActiveWreckord::ClassMethods
   

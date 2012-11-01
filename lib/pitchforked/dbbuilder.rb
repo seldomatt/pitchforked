@@ -4,7 +4,7 @@ db = SQLite3::Database.open("pitchforked.db")
 
 sql = <<SQL
 CREATE table reviews
-(   id INTEGER, 
+(   id INTEGER PRIMARY KEY, 
     url TEXT, 
     rating FLOAT, 
     bnm INTEGER,
@@ -14,17 +14,17 @@ CREATE table reviews
     album_id INTEGER
     );
 CREATE table albums
-(   id INTEGER, 
+(   id INTEGER PRIMARY KEY, 
     name TEXT,
     artist_id INTEGER, 
     label_id INTEGER
     );
 CREATE table artists 
-(   id INTEGER, 
+(   id INTEGER PRIMARY KEY, 
     name TEXT
     );
 CREATE table labels
-(   id INTEGER, 
+(   id INTEGER PRIMARY KEY, 
     name TEXT
     );
 SQL

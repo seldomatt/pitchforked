@@ -34,12 +34,21 @@ reviewlinks = ["/reviews/albums/10082-fluorescent-grey-ep/", "/reviews/albums/12
 reviewlinks.each do |review_link|
 
 doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
-  review = Review.new
-  album = Album.new
-  # artist = Artist.new
-  # label = Label.new
 
-  review.id = review.primary_key_iterator
+  artist = Artist.create_unique(doc.css("h1").first.children.text)
+  label = Label.create_unique(doc.css("h3").first.children.text.split(";").first)
+  unless Label.find(label.id) 
+    label.save
+  end
+  unless Artist.find(artist.id)
+    artist.save
+  end
+  album = Album.new
+  album.name = doc.css("h2").first.children.text
+  album.artist_id = Artist.find_by_name(artist.name)["id"]
+  album.label_id = Label.find_by_name(label.name)["id"]
+  album.save
+  review = Review.new
   review.rating = doc.css(".score").text.to_f
   if doc.css(".bnm-label").text.include?("Best New Music")
     review.bnm = 1
@@ -49,25 +58,7 @@ doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
   review.year = doc.css(".pub-date").text.split(",").last.strip
   review.author = doc.css("h4").children[1].text
   review.body = doc.css(".editorial").text
-  album.id = album.primary_key_iterator
-  album.name = doc.css("h2").first.children.text
-  artist = Artist.create_unique(doc.css("h1").first.children.text)
-  artist.id ||= artist.primary_key_iterator
-  # artist.name = doc.css("h1").first.children.text
-  label = Label.create_unique(doc.css("h3").first.children.text.split(";").first)
-  label.id ||= label.primary_key_iterator
-  # label.name = doc.css("h3").first.children.text.split(";").first
-  review.album_id = album.id
-  album.artist_id = artist.id
-  album.label_id = label.id
-
+  review.album_id = Album.find_by_name(album.name)["id"]
   review.save
-  album.save
-  unless Artist.find(artist.id)
-    artist.save
-  end
-  unless Label.find(label.id) 
-    label.save
-  end
 
 end

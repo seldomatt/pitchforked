@@ -21,7 +21,7 @@ module ActiveWreckord
       table = self.table
       db = SQLite3::Database.open('pitchforked.db')
       db.results_as_hash = true
-      result = db.execute("SELECT * FROM #{table} WHERE id = #{id}").first
+      result = db.execute("SELECT * FROM #{table} WHERE id = '#{id}'").first
       if result != nil
         result.each do |k,v|
           if !(k.is_a?(Fixnum))
@@ -32,6 +32,25 @@ module ActiveWreckord
       end
     end
 
+    def create_unique(name)
+      table = self.table
+      db = SQLite3::Database.open('pitchforked.db')
+      db.results_as_hash = true
+      result = db.execute("SELECT * FROM #{table} WHERE name = '#{name}'").first
+      if result == nil
+        new_object = self.new.tap{|object| object.name = name}
+      else
+        self.find(result["id"])
+      end
+    end
+
+    def find_by_name(name)
+      table = self.table
+      db = SQLite3::Database.open('pitchforked.db')
+      db.results_as_hash = true
+      result = db.execute("SELECT * FROM #{table} WHERE name = '#{name}'").first
+    end
+  
   end
 
 end

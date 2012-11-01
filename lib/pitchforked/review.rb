@@ -1,8 +1,7 @@
 require_relative 'album'
 
 class Review 
-  extend Unique
-  include PrimKey
+  # extend Unique
   include ActiveWreckord::InstanceMethods
   extend ActiveWreckord::ClassMethods
   attr_accessor :id, :url, :rating, :bnm, :year, :author, :body, :album_id
@@ -19,9 +18,9 @@ class Review
     @@reviews ||= []
   end
 
-  def find_album
-    Album.all.detect {|a| a.id == self.album_id }
-  end
+  # def find_album
+  #   Album.all.detect {|a| a.id == self.album_id }
+  # end
 
 
 end
