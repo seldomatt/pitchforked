@@ -10,33 +10,34 @@ require_relative 'album'
 require_relative 'artist'
 require_relative 'label'
 
-# reviewlinks = []
-# n = 1
-# doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
+reviewlinks = []
+n = 1
+doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
 # while doc.css(".next-container").text
-#   if doc.css(".next-container").text.include?("Next")
-#     doc.css(".object-grid ul li a").each do |review|
-#     reviewlinks << review["href"]
-#     end
-#     n += 1
-#     doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
-#   else
-#     doc.css(".object-grid ul li a").each do |review|
-#     reviewlinks << review["href"]
-#     end
-#     break
-#   end
-# end
+while n <= 10
+  if doc.css(".next-container").text.include?("Next")
+    doc.css(".object-grid ul li a").each do |review|
+    reviewlinks << review["href"]
+    end
+    n += 1
+    doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
+  else
+    doc.css(".object-grid ul li a").each do |review|
+    reviewlinks << review["href"]
+    end
+    break
+  end
+end
 
-reviewlinks = ["/reviews/albums/10082-fluorescent-grey-ep/", "/reviews/albums/12991-rainwater-cassette-exchange/"]
+
 
 
 reviewlinks.each do |review_link|
 
 doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
 
-  artist = Artist.create_unique(doc.css("h1").first.children.text)
-  label = Label.create_unique(doc.css("h3").first.children.text.split(";").first)
+  artist = Artist.create_unique(doc.css("h1").first.children.text.gsub("'",""))
+  label = Label.create_unique(doc.css("h3").first.children.text.split(";").first.gsub("'",""))
   unless Label.find(label.id) 
     label.save
   end
@@ -44,7 +45,7 @@ doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
     artist.save
   end
   album = Album.new
-  album.name = doc.css("h2").first.children.text
+  album.name = doc.css("h2").first.children.text.gsub("'","")
   album.artist_id = Artist.find_by_name(artist.name)["id"]
   album.label_id = Label.find_by_name(label.name)["id"]
   album.save
