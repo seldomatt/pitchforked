@@ -12,6 +12,10 @@ module ActiveWreckord
       db.execute("INSERT INTO #{table} (#{attr_cols}) VALUES (#{placeholders})", vals)
     end
 
+    def table
+      self.class.to_s.downcase.concat("s")
+    end
+
   end
 
   module ClassMethods
@@ -50,6 +54,8 @@ module ActiveWreckord
       db.results_as_hash = true
       result = db.execute("SELECT * FROM #{table} WHERE name = '#{name}'").first
     end
+
+
   
   end
 
