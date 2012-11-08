@@ -16,17 +16,19 @@ module ActiveWreckord
   module ClassMethods
 
     def find(id)
-      object = self.new
       db, table = self.open_db_connection
       result = db.execute("SELECT * FROM #{table} WHERE id = '#{id}'").first
-      if result != nil
-        result.each do |k,v|
-          if !(k.is_a?(Fixnum))
-            object.send("#{k}=".to_sym, v)
-          end
+      self.object_from_db(result) if result != nil
+    end
+
+    def object_from_db(query_result_hash)
+      object = self.new
+      query_result_hash.each do |k,v|
+        unless (k.is_a?(Fixnum))
+          object.send("#{k}=", v)
         end
-      object
       end
+      object
     end
 
     def create_unique(name)
