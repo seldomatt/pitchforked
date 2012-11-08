@@ -44,8 +44,8 @@ doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
   end
   album = Album.new
   album.name = doc.css("h2").first.children.text.gsub("'","")
-  album.artist_id = Artist.find_by_name(artist.name)["id"]
-  album.label_id = Label.find_by_name(label.name)["id"]
+  album.artist_id = Artist.find_by_name(artist.name).id
+  album.label_id = Label.find_by_name(label.name).id
   album.save
   review = Review.new
   review.rating = doc.css(".score").text.to_f
@@ -57,7 +57,7 @@ doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
   review.year = doc.css(".pub-date").text.split(",").last.strip
   review.author = doc.css("h4").children[1].text
   review.body = doc.css(".editorial").text
-  review.album_id = Album.find_by_name(album.name)["id"]
+  review.album_id = Album.find_by_name(album.name).id
   review.save
 
 end

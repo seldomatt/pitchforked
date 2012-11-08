@@ -32,17 +32,13 @@ module ActiveWreckord
     end
 
     def create_unique(name)
-      result = self.find_by_name(name)
-      if result == nil
-        new_object = self.new.tap{|object| object.name = name}
-      else
-        self.find(result["id"])
-      end
+      self.find_by_name(name) || self.new.tap{|object| object.name = name}
     end
 
     def find_by_name(name)
       db, table = self.open_db_connection
-      db.execute("SELECT * FROM #{table} WHERE name = '#{name}'").first
+      result = db.execute("SELECT * FROM #{table} WHERE name = '#{name}'").first
+      self.object_from_db(result) if result != nil
     end
 
     def table
