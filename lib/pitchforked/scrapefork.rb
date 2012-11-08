@@ -2,8 +2,6 @@ require 'nokogiri'
 require 'sqlite3'
 require 'open-uri'
 
-require_relative 'unique'
-require_relative 'primkey'
 require_relative 'activewreckord'
 require_relative 'review'
 require_relative 'album'
@@ -14,7 +12,7 @@ reviewlinks = []
 n = 1
 doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
 # while doc.css(".next-container").text
-while n <= 10
+while n <= 5
   if doc.css(".next-container").text.include?("Next")
     doc.css(".object-grid ul li a").each do |review|
     reviewlinks << review["href"]

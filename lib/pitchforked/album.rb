@@ -1,13 +1,7 @@
-
 class Album 
-  extend Unique
   include ActiveWreckord::InstanceMethods
   extend ActiveWreckord::ClassMethods
   attr_accessor :id, :name, :artist_id, :label_id
-
-  def self.table
-    "albums"
-  end
 
   def initialize
     self.class.all << self

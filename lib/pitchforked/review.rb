@@ -1,13 +1,9 @@
 require_relative 'album'
 
-class Review < ActiveRecord::Base
+class Review 
   include ActiveWreckord::InstanceMethods
   extend ActiveWreckord::ClassMethods
   attr_accessor :id, :url, :rating, :bnm, :year, :author, :body, :album_id
-
-  def self.table 
-    "reviews"
-  end
 
   def initialize
     self.class.all << self
