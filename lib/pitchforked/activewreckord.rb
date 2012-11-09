@@ -7,19 +7,14 @@ module ActiveWreckord
 
     def save
       db = self.class.open_db_connection
-      columns = self.get_columns
-      placeholders =  self.get_placeholders 
+      columns = self.get_columns 
       vals = self.get_vals
-      db.insert_record("#{self.class.table}", columns, placeholders, vals)
+      db.insert_record("#{self.class.table}", columns, vals)
     end
 
     def get_columns 
-      self.instance_variables.map{|ivar| ivar.to_s.delete("@")}.join(", ")
+      self.instance_variables.map{|ivar| ivar.to_s.delete("@")}
     end
-
-    def get_placeholders
-      String.new.tap{|s| self.instance_variables.count.times do s << "?, " end}.chomp(", ")
-    end 
 
     def get_vals
       self.instance_variables.map {|ivar| self.send(ivar.to_s.delete("@"))}

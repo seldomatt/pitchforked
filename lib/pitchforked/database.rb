@@ -9,12 +9,16 @@ class Database
     @db.results_as_hash = true
   end
 
-  def insert_record(table,columns,placeholders,vals)
-    self.db.execute("INSERT INTO #{table} (#{columns}) VALUES (#{placeholders})", vals)
+  def insert_record(table,columns, vals)
+    self.db.execute("INSERT INTO #{table} (#{columns.join(",")}) VALUES (#{self.get_placeholders(columns)})", vals)
   end
 
   def select_record_by_attr(table, attribute, match)
     self.db.execute("SELECT * FROM #{table} WHERE #{attribute} = '#{match}'").first
+  end
+
+  def get_placeholders(columns)
+    Array.new(columns.length, "?").join(",")
   end
 
 end
