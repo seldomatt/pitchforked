@@ -3,6 +3,7 @@ require 'sqlite3'
 require 'open-uri'
 
 require_relative 'activewreckord'
+require_relative 'database'
 require_relative 'review'
 require_relative 'album'
 require_relative 'artist'

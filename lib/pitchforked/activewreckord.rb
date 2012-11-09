@@ -1,23 +1,38 @@
+require_relative 'database'
+
 module ActiveWreckord
   require 'sqlite3'
 
   module InstanceMethods
 
     def save
-      db, table = self.class.open_db_connection
-      attr_cols = self.instance_variables.map{|ivar| ivar.to_s.delete("@")}.join(", ")
-      placeholders =  String.new.tap{|s| self.instance_variables.count.times do s << "?, " end}.chomp(", ")
-      vals = self.instance_variables.map {|ivar| self.send(ivar.to_s.delete("@"))}
-      db.execute("INSERT INTO #{table} (#{attr_cols}) VALUES (#{placeholders})", vals)
+      db = self.class.open_db_connection
+      columns = self.get_columns
+      placeholders =  self.get_placeholders 
+      vals = self.get_vals
+      db.insert_record("#{self.class.table}", columns, placeholders, vals)
     end
+
+    def get_columns 
+      self.instance_variables.map{|ivar| ivar.to_s.delete("@")}.join(", ")
+    end
+
+    def get_placeholders
+      String.new.tap{|s| self.instance_variables.count.times do s << "?, " end}.chomp(", ")
+    end 
+
+    def get_vals
+      self.instance_variables.map {|ivar| self.send(ivar.to_s.delete("@"))}
+    end
+
 
   end
 
   module ClassMethods
 
     def find(id)
-      db, table = self.open_db_connection
-      result = db.execute("SELECT * FROM #{table} WHERE id = '#{id}'").first
+      db = self.open_db_connection
+      result = db.select_record_by_attr("#{self.table}", "id", "#{id}")
       self.object_from_db(result) if result != nil
     end
 
@@ -36,8 +51,8 @@ module ActiveWreckord
     end
 
     def find_by_name(name)
-      db, table = self.open_db_connection
-      result = db.execute("SELECT * FROM #{table} WHERE name = '#{name}'").first
+      db = self.open_db_connection
+      result = db.select_record_by_attr("#{self.table}", "name", "#{name}")
       self.object_from_db(result) if result != nil
     end
 
@@ -47,10 +62,7 @@ module ActiveWreckord
  
 
     def open_db_connection
-      db = SQLite3::Database.open('pitchforked.db')
-      db.results_as_hash = true
-      table = self.table
-      return db, table
+      Database.new('pitchforked.db')
     end
 
   end
