@@ -1,7 +1,7 @@
 require_relative 'album'
 require 'active_record'
 
-class Review 
+class Review
   include ActiveWreckord::InstanceMethods
   extend ActiveWreckord::ClassMethods
   attr_accessor :id, :url, :rating, :bnm, :year, :author, :body, :album_id

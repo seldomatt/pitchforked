@@ -31,9 +31,8 @@ end
 
 
 reviewlinks.each do |review_link|
-
-doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
-
+begin
+  doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
   artist = Artist.create_unique(doc.css("h1").first.children.text.gsub("'",""))
   label = Label.create_unique(doc.css("h3").first.children.text.split(";").first.gsub("'",""))
   unless Label.find(label.id) 
@@ -58,6 +57,14 @@ doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
   review.author = doc.css("h4").children[1].text
   review.body = doc.css(".editorial").text
   review.album_id = Album.find_by_name(album.name).id
-  review.save
+  if review.save 
+    puts "Saved #{review}" 
+  else
+    puts "Error Saving #{review}"
+  end
+rescue => e
+  puts "Error scraping #{review_link}, error => #{e}"
+end
+
 
 end

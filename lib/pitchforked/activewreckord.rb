@@ -55,7 +55,6 @@ module ActiveWreckord
       self.to_s.downcase.concat("s")
     end
  
-
     def open_db_connection
       Database.new('pitchforked.db')
     end

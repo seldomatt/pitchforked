@@ -1,0 +1,30 @@
+Stats to Run
+
+Reviews 
+
+Total Reviews - Review.count
+Authors - Review.count(:group_by => author).count
+Average Score - Review.average(:rating).to_f(limit decimals)
+Average Scores by Author - Average scores group by author
+
+Artists 
+Total Artists - Artists.count
+
+Average Rating of bands with 'bear' in their name -
+
+Review.joins(:album => :artist).where("artists.name like ?", "%bear%").average(:rating).to_f
+
+SCOPE for accessing only BNM reviews 
+
+in Reviews call
+
+scope :bnm, where(:bnm => 1)
+
+((Review.bnm.count)/(Review.count).to_f)*100 = Percentage of Total Reviews that are BNM 
+
+Record Labels
+
+Total Record Labels - Labels.count
+Avg score per Record Label - Review.joins(:album => :label).average(:rating, :group=>'labels.name').each do |label, avgscore|
+                                     puts "#{label} with avg rating of #{avgscore.to_f}"
+                              end
