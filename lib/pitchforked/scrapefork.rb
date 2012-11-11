@@ -12,8 +12,7 @@ require_relative 'label'
 reviewlinks = []
 n = 1
 doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
-# while doc.css(".next-container").text
-while n <= 2
+while doc.css(".next-container").text
   if doc.css(".next-container").text.include?("Next")
     doc.css(".object-grid ul li a").each do |review|
     reviewlinks << review["href"]
