@@ -1,15 +1,20 @@
-class Album 
-  include ActiveWreckord::InstanceMethods
-  extend ActiveWreckord::ClassMethods
-  attr_accessor :id, :name, :artist_id, :label_id
+require 'active_record'
+require_relative 'review'
+require_relative 'artist'
 
-  def initialize
-    self.class.all << self
-  end
+class Album < ActiveRecord::Base
+  belongs_to :artist
+  # include ActiveWreckord::InstanceMethods
+  # extend ActiveWreckord::ClassMethods
+  # attr_accessor :id, :name, :artist_id, :label_id
+
+  # def initialize
+  #   self.class.all << self
+  # end
 
 
-  def self.all
-    @@albums ||= []
-  end
+  # def self.all
+  #   @@albums ||= []
+  # end
 
 end
