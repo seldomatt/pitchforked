@@ -34,7 +34,7 @@ reviewlinks.each do |review_link|
 begin
   doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
   artist = Artist.create_unique(doc.css("h1").first.children.text.gsub("'",""))
-  label = Label.create_unique(doc.css("h3").first.children.text.split(";").first.gsub("'",""))
+  label = Label.create_unique(doc.css("h3").first.children.text.split(";").first.gsub("'","").strip)
   unless Label.find(label.id) 
     label.save
   end
@@ -47,6 +47,7 @@ begin
   album.label_id = Label.find_by_name(label.name).id
   album.save
   review = Review.new
+  review.url = review_link
   review.rating = doc.css(".score").text.to_f
   if doc.css(".bnm-label").text.include?("Best New Music")
     review.bnm = 1
@@ -58,7 +59,7 @@ begin
   review.body = doc.css(".editorial").text
   review.album_id = Album.find_by_name(album.name).id
   if review.save 
-    puts "Saved #{review}" 
+    puts "Saved #{review} from #{review.year}" 
   else
     puts "Error Saving #{review}"
   end

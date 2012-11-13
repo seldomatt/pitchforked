@@ -4,6 +4,7 @@ require_relative 'artist'
 
 class Album < ActiveRecord::Base
   belongs_to :artist
+  belongs_to :label
   # include ActiveWreckord::InstanceMethods
   # extend ActiveWreckord::ClassMethods
   # attr_accessor :id, :name, :artist_id, :label_id
