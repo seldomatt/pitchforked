@@ -2,9 +2,39 @@ Stats to Run
 
 Reviews 
 
-Total Reviews - Review.count
+Total Reviews - Review.count 
+Total Artists - Artist.count 
+Total Labels - Label.count 
+
+Average Rating - Review.average(:rating).to_f.round(2) 
+
+
+Total BNMs - Review.bnm.count
+% of Reviews that are BNMs - (((Review.bnm.count)/(Review.count).to_f)*100).round(2) 
+Average Rating of BNM -  Review.bnm.average(:rating).to_f.round(2)
+BNMs per year - Review.bnm.count(:group => 'year').each do |review|
+                                      year, bnms = *review
+                                      puts "#{year} - #{bnms}"
+                                    end 
+
+Authors - 
+
+ 
+
+Top 10 BNM authors - Review.bnm.select("author, count(*) AS count").group("author").order("count DESC").limit(10).each do |review|
+                                     puts "#{review.author} - #{review.count}"
+
+
+
+
+
+
 Authors - Review.count(:group_by => author).count
-Average Score - Review.average(:rating).to_f(limit decimals)
+
+
+
+
+
 Average Scores by Author - Average scores group by author
 
 Artists 
@@ -20,7 +50,7 @@ in Reviews call
 
 scope :bnm, where(:bnm => 1)
 
-((Review.bnm.count)/(Review.count).to_f)*100 = Percentage of Total Reviews that are BNM 
+(((Review.bnm.count)/(Review.count).to_f)*100).round(2) = Percentage of Total Reviews that are BNM 
 
 Record Labels
 
