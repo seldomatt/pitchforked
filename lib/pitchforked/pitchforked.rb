@@ -12,6 +12,11 @@ class Pitchforked < Sinatra::Base
     @reviews = Review.find(:all)
     @labels = Label.find(:all)
     @artists = Artist.find(:all)
+    @avgrating = Review.average_rating
+    @bnms = Review.bnm_percent
+    @bnmrating = Review.bnm.average_rating
+    @authors = Review.authors_count
+    @prolific_auths = Review.top_20_authors
     @rating = Review.artist_name_like("bear").average_rating
     erb :index
   end  

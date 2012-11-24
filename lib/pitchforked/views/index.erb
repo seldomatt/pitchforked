@@ -3,10 +3,29 @@
 <head>
 </head>
 <body>
-<p>Total Reviews:<%= @reviews.count %></p>
-<p>Total Labels:<%= @labels.count %></p>
-<p>Total Artists:<%= @artists.count %></p>
-
+  <h2>Reviews</h2>
+    <p>Total Reviews: <%= @reviews.count %></p>
+    <p>Total Labels: <%= @labels.count %></p>
+    <p>Total Artists: <%= @artists.count %></p>
+    <p>Avg Rating: <%= @avgrating %></p>
+  <h2>BNMs</h2>
+    <p>% of Reviews BNM'ed: %<%= @bnms %></p>
+    <p>Avg BNM Rating: <%= @bnmrating %></p>
+  <h2>Authors</h2>
+    <p>Total Authors: <%= @authors %></p>
+    <h3>20 Most Prolific Authors</h3>
+    <table>
+      <tr>
+        <th>Author</th>
+        <th># of Reviews</th>
+      </tr>
+    <% @prolific_auths.each do |review| %>
+      <tr>
+        <td><%= review.author %></td>
+        <td><%= review.count %></td>
+      </tr>
+    <% end %>
+    </table>
 <p>Avg Rating of Band whose names include 'Bear':<%= @rating %></p>
 </body>
 </html>
