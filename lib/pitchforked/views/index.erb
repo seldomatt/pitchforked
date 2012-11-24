@@ -5,12 +5,9 @@
 <body>
   <h2>Reviews</h2>
     <p>Total Reviews: <%= @reviews.count %></p>
-    <p>Total Labels: <%= @labels.count %></p>
     <p>Total Artists: <%= @artists.count %></p>
+    <p>Total Labels: <%= @labels.count %></p>
     <p>Avg Rating: <%= @avgrating %></p>
-  <h2>BNMs</h2>
-    <p>% of Reviews BNM'ed: %<%= @bnms %></p>
-    <p>Avg BNM Rating: <%= @bnmrating %></p>
   <h2>Authors</h2>
     <p>Total Authors: <%= @authors %></p>
     <h3>20 Most Prolific Authors</h3>
@@ -26,6 +23,53 @@
       </tr>
     <% end %>
     </table>
+  <h2>BNMs</h2>
+    <p>% of Reviews BNM'ed(since 2003): %<%= @bnms %></p>
+    <p>Avg BNM Rating: <%= @bnmrating %></p>
+    <h3>Top 10 BNM authors</h3>
+    <table>
+      <tr>
+        <th>Author</th>
+        <th>BNMs</th>
+      </tr>
+    <% @bnm_auths.each do |review| %>
+      <tr>
+        <td><%= review.author %></td>
+        <td><%= review.count %></td>
+      </tr>
+    <% end %>
+    </table>
+    <h3>Top 15 BNM'ed Record Labels</h3>
+    <table>
+      <tr>
+        <th>Label</th>
+        <th>BNMs</th>
+      </tr>
+    <% @bnm_labels.each do |label| %>
+      <tr>
+        <td><%= label.name %></td>
+        <td><%= label.count %></td>
+      </tr>
+    <% end %>
+    </table>
+    <h3>Top 25 BNM'ed Artists</h3>
+    <table>
+      <tr>
+        <th>Artist</th>
+        <th>BNMs</th>
+      </tr>
+    <% @bnm_artists.each do |artist| %>
+      <tr>
+        <td><%= artist.name %></td>
+        <td><%= artist.count %></td>
+      </tr>
+    <% end %>
+    </table>
+  <h2>Scores</h2>
+  <p>Scoring stats by author(highest and lowest avg), record label, year(?). Highest ever score, lowest ever score, avg score of bands with certain names</p>
+  <h2>Mentions</h2>
+  <p>Counts on actual body of reviews, ex. mentions of Kurt Cobain, guitar vs. synth, etc.</p>
+ 
 <p>Avg Rating of Band whose names include 'Bear':<%= @rating %></p>
 </body>
 </html>

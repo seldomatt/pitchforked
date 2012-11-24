@@ -24,6 +24,18 @@ class Review < ActiveRecord::Base
     select('author, count(*) AS count').group('author').order('count DESC').limit(20)
   end
 
+  def self.top_10_bnm_auths
+    bnm.select('author, count(*) AS count').group('author').order('count DESC').limit(10)
+  end
+
+  def self.most_bnm_labels
+    bnm.select("labels.name, count(*) AS count").joins(:album => :label).group("labels.name").order("count DESC").limit(15)
+  end
+
+  def self.most_bnm_artists
+    bnm.select("artists.name, count(*) AS count").joins(:album => :artist).group("artists.name").order("count DESC").limit(25)
+  end
+
 
   private
   

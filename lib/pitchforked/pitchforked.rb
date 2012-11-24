@@ -17,6 +17,9 @@ class Pitchforked < Sinatra::Base
     @bnmrating = Review.bnm.average_rating
     @authors = Review.authors_count
     @prolific_auths = Review.top_20_authors
+    @bnm_auths = Review.top_10_bnm_auths
+    @bnm_labels = Review.most_bnm_labels
+    @bnm_artists = Review.most_bnm_artists
     @rating = Review.artist_name_like("bear").average_rating
     erb :index
   end  
