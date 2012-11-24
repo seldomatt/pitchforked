@@ -1,6 +1,6 @@
 require 'sqlite3'
 
-db = SQLite3::Database.open("pitchforked.db")
+db = SQLite3::Database.open("refactored.db")
 
 sql = <<SQL
 DROP table reviews;

@@ -1,18 +1,19 @@
 require 'nokogiri'
 require 'sqlite3'
 require 'open-uri'
+require 'active_record'
 
-require_relative 'activewreckord'
-require_relative 'database'
+require_relative 'dbconfig'
 require_relative 'review'
 require_relative 'album'
 require_relative 'artist'
 require_relative 'label'
 
 reviewlinks = []
-n = 1
+n = 5
 doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
-while doc.css(".next-container").text
+while n < 6
+# while doc.css(".next-container").text
   if doc.css(".next-container").text.include?("Next")
     doc.css(".object-grid ul li a").each do |review|
     reviewlinks << review["href"]
@@ -33,19 +34,10 @@ end
 reviewlinks.each do |review_link|
 begin
   doc = Nokogiri::HTML(open("http://pitchfork.com#{review_link}"))
-  artist = Artist.create_unique(doc.css("h1").first.children.text.gsub("'",""))
-  label = Label.create_unique(doc.css("h3").first.children.text.split(";").first.gsub("'","").strip)
-  unless Label.find(label.id) 
-    label.save
-  end
-  unless Artist.find(artist.id)
-    artist.save
-  end
-  album = Album.new
-  album.name = doc.css("h2").first.children.text.gsub("'","")
-  album.artist_id = Artist.find_by_name(artist.name).id
-  album.label_id = Label.find_by_name(label.name).id
-  album.save
+  artist = Artist.find_or_create_by_name(doc.css("h1").first.children.text.gsub("'",""))
+  label = Label.find_or_create_by_name(doc.css("h3").first.children.text.split(";").first.gsub("'","").strip)
+  name = doc.css("h2").first.children.text.gsub("'","")
+  album = Album.create(:name => name, :artist => artist, :label => label)
   review = Review.new
   review.url = review_link
   review.rating = doc.css(".score").text.to_f
@@ -57,7 +49,7 @@ begin
   review.year = doc.css(".pub-date").text.split(",").last.strip
   review.author = doc.css("h4").children[1].text
   review.body = doc.css(".editorial").text
-  review.album_id = Album.find_by_name(album.name).id
+  review.album = album
   if review.save 
     puts "Saved #{review} from #{review.year}" 
   else
