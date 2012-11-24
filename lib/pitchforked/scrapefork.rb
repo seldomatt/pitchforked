@@ -10,19 +10,22 @@ require_relative 'artist'
 require_relative 'label'
 
 reviewlinks = []
-n = 5
+n = 1
 doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
-while n < 6
-# while doc.css(".next-container").text
+while doc.css(".next-container").text
   if doc.css(".next-container").text.include?("Next")
     doc.css(".object-grid ul li a").each do |review|
-    reviewlinks << review["href"]
+      unless Review.find_by_url(review["href"])
+        reviewlinks << review["href"]
+      end
     end
     n += 1
     doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
   else
     doc.css(".object-grid ul li a").each do |review|
-    reviewlinks << review["href"]
+      unless Review.find_by_url(review["href"])
+        reviewlinks << review["href"]
+      end
     end
     break
   end

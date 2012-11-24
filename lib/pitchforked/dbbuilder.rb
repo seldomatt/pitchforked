@@ -1,6 +1,6 @@
 require 'sqlite3'
 
-db = SQLite3::Database.open("refactored.db")
+db = SQLite3::Database.open("pitchforked.db")
 
 sql = <<SQL
 CREATE table reviews

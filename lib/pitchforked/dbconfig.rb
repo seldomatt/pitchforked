@@ -2,5 +2,5 @@ require 'active_record'
 
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
-  :database => "refactored.db"
+  :database => "pitchforked.db"
   )
