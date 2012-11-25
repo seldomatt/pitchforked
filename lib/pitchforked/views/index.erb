@@ -7,7 +7,6 @@
     <p>Total Reviews: <%= @reviews.count %></p>
     <p>Total Artists: <%= @artists.count %></p>
     <p>Total Labels: <%= @labels.count %></p>
-    <p>Avg Rating: <%= @avgrating %></p>
   <h2>Authors</h2>
     <p>Total Authors: <%= @authors %></p>
     <h3>20 Most Prolific Authors</h3>
@@ -65,7 +64,63 @@
       </tr>
     <% end %>
     </table>
-  <h2>Scores</h2>
+  <h2>Ratings</h2>
+    <p>Avg Rating: <%= @avgrating %></p>
+    <h3>Top Rated Labels</h3>
+    <table>
+      <tr>
+        <th>Label</th>
+        <th>Avg Rating</th>
+      </tr>
+      <% @toplabels.each do |review| %>
+      <% label, avgrating = *review %>
+      <tr>
+        <td><%= label %></td>
+        <td><%= avgrating.round(2) %></td>
+      </tr>
+      <% end %>
+    </table>
+    <h3>Lowest Rated Labels</h3>
+    <table>
+      <tr>
+        <th>Label</th>
+        <th>Avg Rating</th>
+      </tr>
+      <% @bottomlabels.each do |review| %>
+      <% label, avgrating = *review %>
+      <tr>
+        <td><%= label %></td>
+        <td><%= avgrating.round(2) %></td>
+      </tr>
+      <% end %>
+    </table>
+
+    <h3>Perfect Tens</h3>
+    <table>
+      <tr>
+        <th>Album</th>
+        <th>Artist</th>
+      </tr>
+      <% @perfect.each do |review| %>
+      <tr>
+        <td><%= review.album.name %> (<%= review.year %>)</td>
+        <td><%= review.album.artist.name %></td>
+      </tr>
+      <% end %>
+    </table>
+    <h3>Perfect Zeros</h3>
+    <table>
+      <tr>
+        <th>Album</th>
+        <th>Artist</th>
+      </tr>
+      <% @zero.each do |review| %>
+      <tr>
+        <td><%= review.album.name %>  (<%= review.year %>)</td>
+        <td><%= review.album.artist.name %></td>
+      </tr>
+      <% end %>
+    </table>
   <p>Scoring stats by author(highest and lowest avg), record label, year(?). Highest ever score, lowest ever score, avg score of bands with certain names</p>
   <h2>Mentions</h2>
   <p>Counts on actual body of reviews, ex. mentions of Kurt Cobain, guitar vs. synth, etc.</p>
