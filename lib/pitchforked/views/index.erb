@@ -65,7 +65,34 @@
     <% end %>
     </table>
   <h2>Ratings</h2>
-    <p>Avg Rating: <%= @avgrating %></p>
+    <h3>Top Rated Artists</h3>
+    <table>
+      <tr>
+        <th>Artist</th>
+        <th>Avg Rating</th>
+      </tr>
+      <% @topartists.each do |review| %>
+      <% artist, avgrating = *review %>
+      <tr>
+        <td><%= artist %></td>
+        <td><%= avgrating.round(2) %></td>
+      </tr>
+      <% end %>
+    </table>
+    <h3>Lowest Rated Artists</h3>
+    <table>
+      <tr>
+        <th>Artist</th>
+        <th>Avg Rating</th>
+      </tr>
+      <% @bottomartists.each do |review| %>
+      <% artist, avgrating = *review %>
+      <tr>
+        <td><%= artist %></td>
+        <td><%= avgrating.round(2) %></td>
+      </tr>
+      <% end %>
+    </table>
     <h3>Top Rated Labels</h3>
     <table>
       <tr>
@@ -94,6 +121,38 @@
       </tr>
       <% end %>
     </table>
+    <h3>Highest Scoring Authors</h3>
+    <table>
+      <tr>
+        <th>Author</th>
+        <th>Avg Rating</th>
+      </tr>
+      <% @topauths.each do |review| %>
+      <% author, avgrating = *review %>
+      <tr>
+        <td><%= author %></td>
+        <td><%= avgrating.round(2) %></td>
+      </tr>
+      <% end %>
+    </table>
+    <h3>Lowest Scoring Authors</h3>
+    <table>
+      <tr>
+        <th>Author</th>
+        <th>Avg Rating</th>
+      </tr>
+      <% @bottomauths.each do |review| %>
+      <% author, avgrating = *review %>
+      <tr>
+        <td><%= author %></td>
+        <td><%= avgrating.round(2) %></td>
+      </tr>
+      <% end %>
+    </table>
+    <h3>Avg Rating</h3>
+    <p><%= @avgrating %></p>
+    <h3>Avg Rating for bandnames including %"bear"|"deer"|"black"| "crystal"|"beach"|"girls"|"magic"%</h3>
+      <p><%= @bandnames %></p>
 
     <h3>Perfect Tens</h3>
     <table>

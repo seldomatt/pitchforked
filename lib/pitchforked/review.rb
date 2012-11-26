@@ -3,8 +3,9 @@ require 'active_record'
 class Review < ActiveRecord::Base
   belongs_to :album
   scope :bnm, where(:bnm => 1)
-  scope :sigauths, select('author, count(*) AS count').group('author').having('count > ?', 10)
+  scope :sigauths, select('author, count(*) AS count').group('author').having('count > ?', 5)
   scope :siglabels, select('labels.name, count(*) AS count').joins(:album => :label).group('labels.name').having('count > ?', 10) 
+  scope :sigartists, select('artists.name, count(*) AS count').joins(:album => :artist).group('artists.name').having('count > ?', 1)
 
   def self.artist_name_like(str)
     joins(:album => :artist).where("artists.name like ?", "%#{str}%")
@@ -52,6 +53,26 @@ class Review < ActiveRecord::Base
 
   def self.lowest_rated_labels
     siglabels.average(:rating, :order=>'average_rating ASC', :limit=>50)
+  end
+
+  def self.highest_rated_artists
+    sigartists.average(:rating, :order=>'average_rating DESC', :limit=>50)
+  end
+
+  def self.lowest_rated_artists
+    sigartists.average(:rating, :order=>'average_rating ASC', :limit=>50)
+  end
+
+  def self.highest_rated_auths
+    sigauths.average(:rating, :order=>'average_rating DESC', :limit=>15)
+  end
+
+  def self.lowest_rated_auths
+    sigauths.average(:rating, :order=>'average_rating ASC', :limit=>15)
+  end
+
+  def self.band_names 
+    joins(:album => :artist).where("artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ?", "%black%","%bear%","%beach%","%crystal%", "%girls%", "%magic%", "%deer%")
   end
 
 

@@ -29,6 +29,11 @@ class Pitchforked < Sinatra::Base
     @zero = Review.zero_ratings
     @toplabels = Review.top_rated_labels
     @bottomlabels = Review.lowest_rated_labels
+    @topartists = Review.highest_rated_artists
+    @bottomartists = Review.lowest_rated_artists
+    @topauths = Review.highest_rated_auths
+    @bottomauths = Review.lowest_rated_auths
+    @bandnames = Review.band_names.average_rating
     erb :index
   end  
 

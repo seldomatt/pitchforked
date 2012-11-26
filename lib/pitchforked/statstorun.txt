@@ -63,3 +63,20 @@ Avg score per Record Label - Review.joins(:album => :label).average(:rating, :gr
 Top BNM'ed Record Labels (all with more than 2 BNM)
 
 Review.bnm.select("labels.name, count(*) AS count").joins(:album => :label).having("count > ?", 2).group("labels.name").order("count DESC")
+
+
+
+Band names: 
+
+%black%
+%bear%
+%wolf%
+%beach%
+%magic%
+%crystal%
+%young%
+%golden%
+
+
+Review.joins(:album => :artist).where("artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ?", "%black%","%bear%","%beach%","%crystal%")
+
