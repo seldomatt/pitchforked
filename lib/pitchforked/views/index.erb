@@ -5,37 +5,90 @@
   <link href="style.css"rel="stylesheet" type="text/css"> 
 </head>
 <body>
-  <div id="container">
     <div id="content">
-      <div class="sections">
+        <div class="sectiongroup">
+          <h3>DATASET</h3>
         <section>
-          <h2>Reviews</h2>
-            <p>Total Reviews: <%= @reviews.count %></p>
-            <p>Total Artists: <%= @artists.count %></p>
-            <p>Total Labels: <%= @labels.count %></p>
+          <h2>Totals</h2>
+            <p>Reviews: <%= @reviews.count %></p>
+            <p>Artists: <%= @artists.count %></p>
+            <p>Labels: <%= @labels.count %></p>
+            <p>Authors: <%= @authors %></p>
         </section>
-        <section>
-          <h2>Authors</h2>
-            <p>Total Authors: <%= @authors %></p>
-            <h3>20 Most Prolific Authors</h3>
-            <table>
-              <tr>
-                <th>Author</th>
-                <th># of Reviews</th>
-              </tr>
-            <% @prolific_auths.each do |review| %>
-              <tr>
-                <td><%= review.author %></td>
-                <td><%= review.count %></td>
-              </tr>
-            <% end %>
-            </table>
-        </section>
-        <section class="last">
-          <h2>BNMs</h2>
+        </div><!-- end sectiongroup for dataset -->
+      <div class="sectiongroup">
+        
+        
+          <table class="nestedtable">
+            <tr><h3>AUTHORS</h3></tr>
+            <tr>
+              <td class="nestedtd">
+                <section>
+                  <h2>20 Most Prolific</h2>
+                  <table>
+                    <tr>
+                      <th>Author</th>
+                      <th># of Reviews</th>
+                    </tr>
+                  <% @prolific_auths.each do |review| %>
+                    <tr>
+                      <td><%= review.author %></td>
+                      <td><%= review.count %></td>
+                    </tr>
+                  <% end %>
+                  </table>
+                </section>
+              </td>
+              <td class="nestedtd"> 
+                <section>
+                <h2>Highest Scoring Authors</h2>
+                  <table>
+                    <tr>
+                      <th>Author</th>
+                      <th>Avg Rating</th>
+                    </tr>
+                    <% @topauths.each do |review| %>
+                    <% author, avgrating = *review %>
+                    <tr>
+                      <td><%= author %></td>
+                      <td><%= avgrating.round(2) %></td>
+                    </tr>
+                    <% end %>
+                  </table>
+                </section>
+              </td>
+              <td class="nestedtd">
+                <section>
+                  <h2>Lowest Scoring Authors</h2>
+                  <table>
+                    <tr>
+                      <th>Author</th>
+                      <th>Avg Rating</th>
+                    </tr>
+                    <% @bottomauths.each do |review| %>
+                    <% author, avgrating = *review %>
+                    <tr>
+                      <td><%= author %></td>
+                      <td><%= avgrating.round(2) %></td>
+                    </tr>
+                    <% end %>
+                  </table>
+                </section>
+              </td>
+            </tr>
+          </table><!-- all author tables -->
+          
+      </div><!-- end of sectiongroup for authors -->
+      <div class="sectiongroup">
+        <h3>BNMs</h3>
+        
+          <section>
+            <h2>Stats</h2>
             <p>% of Reviews BNM'ed(since 2003): %<%= @bnms %></p>
             <p>Avg BNM Rating: <%= @bnmrating %></p>
-            <h3>Top 10 BNM authors</h3>
+          </section>
+          <section>
+            <h2>Top 10 BNM authors</h2>
             <table>
               <tr>
                 <th>Author</th>
@@ -48,7 +101,9 @@
               </tr>
             <% end %>
             </table>
-            <h3>Top 15 BNM'ed Record Labels</h3>
+          </section>
+          <section>
+            <h2>Top 15 BNM'ed Record Labels</h2>
             <table>
               <tr>
                 <th>Label</th>
@@ -61,7 +116,9 @@
               </tr>
             <% end %>
             </table>
-            <h3>Top 25 BNM'ed Artists</h3>
+          </section>
+          <section>
+            <h2>Top 25 BNM'ed Artists</h2>
             <table>
               <tr>
                 <th>Artist</th>
@@ -75,9 +132,10 @@
             <% end %>
             </table>
         </section>
+      </div><!-- end of sectiongroup for bnms -->
         <section>
           <h2>Ratings</h2>
-            <h3>Top Rated Artists</h3>
+            <h2>Top Rated Artists</h2>
             <table>
               <tr>
                 <th>Artist</th>
@@ -93,7 +151,7 @@
             </table>
           </section>
           <section>
-            <h3>Lowest Rated Artists</h3>
+            <h2>Lowest Rated Artists</h2>
             <table>
               <tr>
                 <th>Artist</th>
@@ -109,7 +167,7 @@
             </table>
           </section>
           <section class="last">
-            <h3>Top Rated Labels</h3>
+            <h2>Top Rated Labels</h2>
             <table>
               <tr>
                 <th>Label</th>
@@ -124,7 +182,8 @@
               <% end %>
             </table>
           </section>
-            <h3>Lowest Rated Labels</h3>
+          <section>
+            <h2>Lowest Rated Labels</h2>
             <table>
               <tr>
                 <th>Label</th>
@@ -138,40 +197,31 @@
               </tr>
               <% end %>
             </table>
-            <h3>Highest Scoring Authors</h3>
-            <table>
-              <tr>
-                <th>Author</th>
-                <th>Avg Rating</th>
-              </tr>
-              <% @topauths.each do |review| %>
-              <% author, avgrating = *review %>
-              <tr>
-                <td><%= author %></td>
-                <td><%= avgrating.round(2) %></td>
-              </tr>
-              <% end %>
-            </table>
-            <h3>Lowest Scoring Authors</h3>
-            <table>
-              <tr>
-                <th>Author</th>
-                <th>Avg Rating</th>
-              </tr>
-              <% @bottomauths.each do |review| %>
-              <% author, avgrating = *review %>
-              <tr>
-                <td><%= author %></td>
-                <td><%= avgrating.round(2) %></td>
-              </tr>
-              <% end %>
-            </table>
-            <h3>Avg Rating</h3>
-            <p><%= @avgrating %></p>
-            <h3>Avg Rating for bandnames including %"bear"|"deer"|"black"| "crystal"|"beach"|"girls"|"magic"%</h3>
-              <p><%= @bandnames %></p>
+            
+            <section>
+            <h2>Averages</h2>
+            <h2>Avg Rating</h2>
+              <p><%= @avgrating %></p>
+            <h2>Avg Ratings by Year (with total review counts)</h2>
+              <table>
+                <tr>
+                  <th>Year</th>
+                  <th>Total Reviews</th>
+                  <th>Avg Rating</th>
+                </tr>
+                <% @avgbyyear.each do |review| %>
+                <tr>
+                  <td><%= review.year %></td>
+                  <td><%= review.count %></td>
+                  <td><%= review.avg.round(2) %></td>
+                </tr>
+                <% end %>
+              </table>
+              <h2>Avg Rating for bandnames including:</br> %"bear"|"deer"|"black"|"crystal"|"beach"|"girls"|"magic"%</h2>
+                <p><%= @bandnames %></p>
+            </section>
 
-            <h3>Perfect Tens</h3>
+            <h2>Perfect Tens</h2>
             <table>
               <tr>
                 <th>Album</th>
@@ -184,7 +234,7 @@
               </tr>
               <% end %>
             </table>
-            <h3>Perfect Zeros</h3>
+            <h2>Perfect Zeros</h2>
             <table>
               <tr>
                 <th>Album</th>
@@ -197,13 +247,105 @@
               </tr>
               <% end %>
             </table>
-        <p>Scoring stats by author(highest and lowest avg), record label, year(?). Highest ever score, lowest ever score, avg score of bands with certain names</p>
-        <h2>Mentions</h2>
-        <p>Counts on actual body of reviews, ex. mentions of Kurt Cobain, guitar vs. synth, etc.</p>
-       
-      <p>Avg Rating of Band whose names include 'Bear':<%= @rating %></p>
+        <!-- <p>Scoring stats by author(highest and lowest avg), record label, year(?). Highest ever score, lowest ever score, avg score of bands with certain names</p> -->
+        <section>
+          <h2>Artist Mentions</h2>
+          <ol>
+            <li>Ariel Pink: <%= @arielpink %></li>
+            <li>David Byrne: <%=  @davidbyrne %></li>
+            <li>Kurt Cobain: <%= @cobain %></li>
+            <li>Thom Yorke: <%= @yorke %></li>
+            <li>Bruce Springsteen: <%= @springsteen %></li>
+            <li>Lou Reed: <%= @loureed %></li>
+            <li>Brian Wilson: <%=  @brianwilson %></li>
+            <li>John Lennon: <%=  @johnlennon %></li>
+            <li>Brian Eno: <%=  @brianeno %></li>
+            <li>Jared Leto: <%=  @jaredleto %></li>
+          </ol>
+       </section><!-- artist mentions section -->
+       <section>
+          <h2>Genre Lifecycle</h2>
+          <h2>Electroclash</h2>
+          <table>
+            <tr>
+              <th>Year</th>
+              <th>Mentions</th>
+            </tr>
+            <tr>
+              <td>2002</td>
+              <td><%= @electro02 %></td>
+            </tr>
+            <tr>
+              <td>2003</td>
+              <td><%= @electro03 %></td>
+            </tr>
+            <tr>
+              <td>2004</td>
+              <td><%= @electro04 %></td>
+            </tr>
+            <tr>
+              <td>2012</td>
+              <td><%= @electro12 %></td>
+            </tr>
+          </table>
+          <h2>Chillwave</h2>
+          <table>
+            <tr>
+              <th>Year</th>
+              <th>Mentions</th>
+            </tr>
+            <tr>
+              <td>2009</td>
+              <td><%= @chill09 %></td>
+            </tr>
+            <tr>
+              <td>2010</td>
+              <td><%= @chill10 %></td>
+            </tr>
+            <tr>
+              <td>2011</td>
+              <td><%= @chill11 %></td>
+            </tr>
+            <tr>
+              <td>2012</td>
+              <td><%= @chill12 %></td>
+            </tr>
+          </table>
+          <h2>Balearic</h2>
+          <table>
+            <tr>
+              <th>Year</th>
+              <th>Mentions</th>
+            </tr>
+            <tr>
+              <td>2007</td>
+              <td><%= @balearic07 %></td>
+            </tr>
+            <tr>
+              <td>2008</td>
+              <td><%= @balearic08 %></td>
+            </tr>
+            <tr>
+              <td>2009</td>
+              <td><%= @balearic09 %></td>
+            </tr>
+            <tr>
+              <td>2010</td>
+              <td><%= @balearic10 %></td>
+            </tr>
+          </table>
+       </section><!-- trend mentions section -->
+       <section>
+          <h2>Instruments</h2>
+          <ol>
+            <li>Guitar: <%= @guitars %> </li>
+            <li>Synth: <%=  @synths %> </li>
+            <li>Sampler: <%= @samplers %></li> 
+            <li>Zither: <%= @zithers %></li>
+            <li>Didgeridoo: <%= @didges %></li> 
+          </ol>
+      </section><!-- instrument mention section -->
       </div> <!-- end div sections -->
     </div> <!-- end div content -->
-  </div> <!-- end div container -->
 </body>
 </html>

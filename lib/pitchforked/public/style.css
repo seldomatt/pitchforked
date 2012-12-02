@@ -4,6 +4,7 @@ body {
   font-weight: bold;
   color: #222;
   line-height: 20px;
+  background-color: #353535;
 }
 
 h2 {
@@ -12,16 +13,22 @@ h2 {
   padding: 5px;
 }
 
-#container {
-  background-color: #353535;
-}
-
 #content {
-  width: 1000px;
-  margin: 0 auto;
-  padding: 30px;
   background-color: #E9E9E9;
   opacity: 50%;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 40px;
+  /*height: 100%;*/
+  /*display: block;*/
+}
+
+.sectiongroup {
+  border-top: solid #EF4135 5px;
+  margin: 5px;
+  width: ;
+  /*float: left;*/
+  /*background: white;*/
 }
 
 /*.sections {
@@ -32,12 +39,45 @@ h2 {
 section {
   background-color:white;
   padding: 20px;
-  margin: 5px;
-  float: left;
+  /*margin: 5px;*/
+  /*float: left;*/
+  /*width: 200px;*/
 }
+
+
 
 section.last {
   clear: right;
+}
+
+th {
+  /*color: #EF4135;*/
+  padding: 2px 5px;
+}
+
+td {
+  color: #666;
+  padding: 2px 5px;
+}
+
+td h2 {
+  color: black;
+}
+
+h3 {
+  font-size: 11px;
+  color: #EF4135;
+  background: white;
+  padding: 5px;
+}
+
+.nestedtable {
+  width: 100%;
+}
+
+.nestedtd {
+  /*background-color: green;*/
+  width: 33%;
 }
 
 
