@@ -6,16 +6,32 @@
 </head>
 <body>
     <div id="content">
-        <div class="sectiongroup">
-          <h3>DATASET</h3>
-        <section>
-          <h2>Totals</h2>
-            <p>Reviews: <%= @reviews.count %></p>
-            <p>Artists: <%= @artists.count %></p>
-            <p>Labels: <%= @labels.count %></p>
-            <p>Authors: <%= @authors %></p>
+      <img id="headerimg" src="pforkheader.png">
+        
+          <!-- <h3>DATASET</h3> -->
+        <section id="overall">
+          <ol id="topline">
+            <li>
+              <p class="med">Reviews</p>
+              <p class="big"> <%= @reviews.count %></p>
+            </li>
+            <li>
+              <p class="med">Artists</p>
+              <p class="big"><%= @artists.count %></p>
+            </li>
+            <li>
+          <div class="toplinestats"> 
+            <div class="med">Labels</div>
+            <div class="big"><%= @labels.count %></div>
+          </div></li>
+            <li>
+          <div class="toplinestats">
+            <div class="med">Authors</div>
+            <div class="big" ><%= @authors %></div>
+          </div></li>
+        </ol><!-- end of topline stats -->
         </section>
-        </div><!-- end sectiongroup for dataset -->
+        
       <div class="sectiongroup">
         
         
@@ -40,7 +56,9 @@
                 </section>
               </td>
               <td class="nestedtd"> 
+
                 <section>
+
                 <h2>Highest Scoring Authors</h2>
                   <table>
                     <tr>
@@ -87,116 +105,148 @@
             <p>% of Reviews BNM'ed(since 2003): %<%= @bnms %></p>
             <p>Avg BNM Rating: <%= @bnmrating %></p>
           </section>
-          <section>
-            <h2>Top 10 BNM authors</h2>
-            <table>
-              <tr>
-                <th>Author</th>
-                <th>BNMs</th>
+          
+           <table class="nestedtable"> 
+            <tr valign="top">
+              <td valign="top" class="nestedtd">
+                <section>
+                  <h2>Top 10 BNM authors</h2>
+                  <table>
+                    <tr>
+                      <th>Author</th>
+                      <th>BNMs</th>
+                    </tr>
+                  <% @bnm_auths.each do |review| %>
+                    <tr>
+                      <td><%= review.author %></td>
+                      <td><%= review.count %></td>
+                    </tr>
+                  <% end %>
+                  </table>
+                </section>
+                <img class="tableimg" src="weavers.jpg">
+              </td>
+              <td class="nestedtd">
+                <img id="pearls" src="pearls.jpg">
+                <section>
+                <h2>Top 15 BNM'ed Record Labels</h2>
+                <table>
+                  <tr>
+                    <th>Label</th>
+                    <th>BNMs</th>
+                  </tr>
+                <% @bnm_labels.each do |label| %>
+                  <tr>
+                    <td><%= label.name %></td>
+                    <td><%= label.count %></td>
+                  </tr>
+                <% end %>
+                </table>
+              </section>
+              </td>
+              <td class="nestedtd">
+                <section>
+                  <h2>Top 25 BNM'ed Artists</h2>
+                  <table>
+                    <tr>
+                      <th>Artist</th>
+                      <th>BNMs</th>
+                    </tr>
+                  <% @bnm_artists.each do |artist| %>
+                    <tr>
+                      <td><%= artist.name %></td>
+                      <td><%= artist.count %></td>
+                    </tr>
+                  <% end %>
+                  </table>
+              </section>
+              </td>
               </tr>
-            <% @bnm_auths.each do |review| %>
-              <tr>
-                <td><%= review.author %></td>
-                <td><%= review.count %></td>
-              </tr>
-            <% end %>
-            </table>
-          </section>
-          <section>
-            <h2>Top 15 BNM'ed Record Labels</h2>
-            <table>
-              <tr>
-                <th>Label</th>
-                <th>BNMs</th>
-              </tr>
-            <% @bnm_labels.each do |label| %>
-              <tr>
-                <td><%= label.name %></td>
-                <td><%= label.count %></td>
-              </tr>
-            <% end %>
-            </table>
-          </section>
-          <section>
-            <h2>Top 25 BNM'ed Artists</h2>
-            <table>
-              <tr>
-                <th>Artist</th>
-                <th>BNMs</th>
-              </tr>
-            <% @bnm_artists.each do |artist| %>
-              <tr>
-                <td><%= artist.name %></td>
-                <td><%= artist.count %></td>
-              </tr>
-            <% end %>
-            </table>
-        </section>
+            </table><!-- end of nested bnm table -->
       </div><!-- end of sectiongroup for bnms -->
-        <section>
-          <h2>Ratings</h2>
-            <h2>Top Rated Artists</h2>
-            <table>
-              <tr>
-                <th>Artist</th>
-                <th>Avg Rating</th>
-              </tr>
-              <% @topartists.each do |review| %>
-              <% artist, avgrating = *review %>
-              <tr>
-                <td><%= artist %></td>
-                <td><%= avgrating.round(2) %></td>
-              </tr>
-              <% end %>
-            </table>
-          </section>
-          <section>
-            <h2>Lowest Rated Artists</h2>
-            <table>
-              <tr>
-                <th>Artist</th>
-                <th>Avg Rating</th>
-              </tr>
-              <% @bottomartists.each do |review| %>
-              <% artist, avgrating = *review %>
-              <tr>
-                <td><%= artist %></td>
-                <td><%= avgrating.round(2) %></td>
-              </tr>
-              <% end %>
-            </table>
-          </section>
-          <section class="last">
-            <h2>Top Rated Labels</h2>
-            <table>
-              <tr>
-                <th>Label</th>
-                <th>Avg Rating</th>
-              </tr>
-              <% @toplabels.each do |review| %>
-              <% label, avgrating = *review %>
-              <tr>
-                <td><%= label %></td>
-                <td><%= avgrating.round(2) %></td>
-              </tr>
-              <% end %>
-            </table>
-          </section>
-          <section>
-            <h2>Lowest Rated Labels</h2>
-            <table>
-              <tr>
-                <th>Label</th>
-                <th>Avg Rating</th>
-              </tr>
-              <% @bottomlabels.each do |review| %>
-              <% label, avgrating = *review %>
-              <tr>
-                <td><%= label %></td>
-                <td><%= avgrating.round(2) %></td>
-              </tr>
-              <% end %>
-            </table>
+      <div class="sectiongroup">
+        <h3>RATINGS</h3>
+        
+          <table class="nestedtable">
+            <tr><td><h2>Artists</h2></td></tr>
+            <tr>
+              <td class="nestedtddouble">
+                <section>
+                  <h2>Top Rated Artists</h2>
+                  <table>
+                    <tr>
+                      <th>Artist</th>
+                      <th>Avg Rating</th>
+                    </tr>
+                    <% @topartists.each do |review| %>
+                    <% artist, avgrating = *review %>
+                    <tr>
+                      <td><%= artist %></td>
+                      <td><%= avgrating.round(2) %></td>
+                    </tr>
+                    <% end %>
+                  </table>
+                </section>
+              </td>
+              <td class="nestedtddouble">
+              <section>
+                <h2>Lowest Rated Artists</h2>
+                <table>
+                  <tr>
+                    <th>Artist</th>
+                    <th>Avg Rating</th>
+                  </tr>
+                  <% @bottomartists.each do |review| %>
+                  <% artist, avgrating = *review %>
+                  <tr>
+                    <td><%= artist %></td>
+                    <td><%= avgrating.round(2) %></td>
+                  </tr>
+                  <% end %>
+                </table>
+              </section>
+              </td>
+            </tr>
+            <tr><td><h2>Labels</h2></td></tr>
+            <tr>
+              <td class="nestedtddouble">
+                <section>
+                <h2>Top Rated Labels</h2>
+                <table>
+                  <tr>
+                    <th>Label</th>
+                    <th>Avg Rating</th>
+                  </tr>
+                  <% @toplabels.each do |review| %>
+                  <% label, avgrating = *review %>
+                  <tr>
+                    <td><%= label %></td>
+                    <td><%= avgrating.round(2) %></td>
+                  </tr>
+                  <% end %>
+                </table>
+              </section>
+              </td>
+              <td class="nestedtddouble">
+                <section>
+                  <h2>Lowest Rated Labels</h2>
+                  <table>
+                    <tr>
+                      <th>Label</th>
+                      <th>Avg Rating</th>
+                    </tr>
+                    <% @bottomlabels.each do |review| %>
+                    <% label, avgrating = *review %>
+                    <tr>
+                      <td><%= label %></td>
+                      <td><%= avgrating.round(2) %></td>
+                    </tr>
+                    <% end %>
+                  </table>
+              </td>
+            </tr>
+          </table><!-- end of nested table for ratings -->
+          </div><!-- end of sectiongroup for ratings -->
             
             <section>
             <h2>Averages</h2>

@@ -44,7 +44,43 @@ section {
   /*width: 200px;*/
 }
 
+#headerimg {
+  width: 990px;
+}
 
+ol#topline li {
+  float: left;
+  margin: 43px;
+}
+
+.med {
+  font-size: 20px;
+  width: 150px;
+  text-align: center;
+}
+
+.big {
+  font-size: 50px;
+  line-height: 50px;
+  width: 150px;
+  text-align: center;
+}
+
+#overall {
+  height: 100px;
+  padding-bottom: 75px;
+  border-top: 5px solid black;
+}
+
+.tableimg {
+  width: 330px;
+}
+
+img#pearls {
+  display: inline;
+  /*height: 150px;
+  width: 300px;*/
+}
 
 section.last {
   clear: right;
@@ -76,8 +112,14 @@ h3 {
 }
 
 .nestedtd {
+  valign: top;
   /*background-color: green;*/
   width: 33%;
+}
+
+.nestedtddouble {
+
+  width: 50%;
 }
 
 
