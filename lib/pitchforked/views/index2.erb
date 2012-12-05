@@ -95,6 +95,12 @@
     <div class="row red">
       <h2>RATINGS × ARTISTS</h2>
       <div class="one-third column">
+        <img src="pearls.jpg">
+        <img src="gorky.jpg">
+        <img id="isbimg" src="isb.png">
+        <!-- <img id="tvp" src="tvp.jpg"> -->
+      </div><!-- end of center picture column -->
+      <div class="one-third column">
         <div class="section">
         <h3>Top Rated Artists</h3>
           <table>
@@ -112,12 +118,6 @@
           </table>
         </div>
       </div>
-      <div class="one-third column">
-        <img src="pearls.jpg">
-        <img src="gorky.jpg">
-        <img id="isbimg" src="isb.png">
-        <!-- <img id="tvp" src="tvp.jpg"> -->
-      </div><!-- end of center picture column -->
       <div class="one-third column">
         <div class="section">
         <h3>Lowest Rated Artists</h3>
@@ -141,8 +141,8 @@
       <h2>AVERAGES</h2>
       <div class="four columns">
         <div class="section">
-          <p class="medrating">Avg Rating</br>for All Artists:</br><span class="bigrating rednums"> <%= @avgrating %></span></p>
           <p class="medrating">Avg Rating for Artists Whose Names Include "bear" "deer" "black" "crystal" "beach" "girls" or "magic":</br><span class="bigrating rednums"><%= @bandnames %></span></p>
+          <p class="smallrating">Avg Rating</br>for All Artists:</br><span class="bigrating rednums"> <%= @avgrating %></span></p>
         </div>
       </div>
       <div class="four columns">
