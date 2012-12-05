@@ -8,7 +8,8 @@ body {
 
 h2 {
   color: #555;
-  padding: 5px;
+  padding: 10px;
+  padding-left: 0px;
   font-size: 11px;
   background-color: #E9E9E9;
 }
@@ -32,8 +33,15 @@ h2::after {
   content: "»";
 }
 
+/*.row {
+  padding-left: 5px;
+  padding-right: 5px;
+}*/
+
 .container {
-  background-color: #E9E9E9;  
+  background-color: #E9E9E9; 
+  border-left: solid 40px #E9E9E9;
+  border-right: solid 40px #E9E9E9; 
 }
 
 #headerimg {
@@ -102,7 +110,7 @@ li span.rednums {
 .section {
   background-color: white;
   margin: 3px;
-  padding: 10px;
+  padding: 12px;
 }
 
 .black {
@@ -115,12 +123,34 @@ li span.rednums {
   padding: 10px;
 }
 
+table {
+  width: 100%;
+}
+
+th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+td {
+  /*font-weight: normal;*/
+}
+
+#artisttable {
+  line-height: 14px;
+}
+
+/*td:nth-child(2) {
+  text-align: center;
+  align: center;
+}*/
+
 .red {
-  border-top: 5px solid #EF4135;
+  border-top: 5px solid #353535;
 }
 
 .row {
-  margin-bottom: 2px;
+  margin-bottom: 15px;
 }
 
 .important {
