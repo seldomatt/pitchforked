@@ -81,11 +81,17 @@ ol#artistmentions li {
 
 ol#instruments li {
   font-size: 22px;
+  margin: 10px 0px;
 }
 
 li span.rednums {
   color: #EF4135;
   font-size: 25px;
+}
+
+.rednums {
+  color: #EF4135;
+  font-size: 50px;
 }
 
 
@@ -146,6 +152,11 @@ img#tvp {
 
 img#drakeimg {
   height: 400px;
+  width: 300px;
+}
+
+img#isbimg {
+  height: 300px;
   width: 300px;
 }
 

@@ -59,6 +59,8 @@ class Pitchforked < Sinatra::Base
     @balearic09 = Review.body_name_drop_by_year("balearic", "2009")
     @balearic10 = Review.body_name_drop_by_year("balearic", "2010")
     @bottomlabels = Review.lowest_rated_labels
+    @bnms = Review.bnm_percent
+    @bnmrating = Review.bnm.average_rating
     erb :index2
   end
 

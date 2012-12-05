@@ -68,6 +68,7 @@
         </div>
         <img class="littlepic" src="maccoll.jpg">
         <img class="littlepic" src="trimble.jpg">
+
       </div>
       <div class="one-third column">
         <div class="section">
@@ -87,6 +88,7 @@
           </table>
         </div>
         <img class="littlepic" src="adol.jpg">
+        <img class="littlepic" src="alee.jpg">
       </div>
     </div><!-- end of authors div -->
     <div class="row red">
@@ -124,6 +126,11 @@
             </tr>
           <% end %>
           </table>
+        </div>
+        <div class="section">
+          <p class="medrating">Avg BNM Rating:<span class="bigrating rednums"> <%= @bnmrating %></span></p>
+          <p class="medrating">% of Reviews BNM'ed:</br><span class="bigrating rednums">%<%= @bnms %></span></p>
+          
         </div>
       </div>
       <div class="one-third column">
@@ -167,10 +174,8 @@
       <div class="one-third column">
         <img src="pearls.jpg">
         <img src="gorky.jpg">
+        <img id="isbimg" src="isb.png">
         <!-- <img id="tvp" src="tvp.jpg"> -->
-        <div class="section">
-          <p>IMAGES GO HERE</p>
-        </div>
       </div><!-- end of center picture column -->
       <div class="one-third column">
         <div class="section">
@@ -199,14 +204,14 @@
           </br>
           </br>
           </br>
-          <p class="bigrating"><%= @avgrating %></p>
+          <p class="bigrating rednums"><%= @avgrating %></p>
         </div>
       </div>
       <div class="four columns">
         <div class="section">
           <p class="medrating">Avg Rating for Artists Whose Names Include:</p></br>
           <p class="smallred">"bear" "deer" "black" "crystal" "beach" "girls" or "magic":
-          <p class="bigrating"><%= @bandnames %></p>
+          <p class="bigrating rednums"><%= @bandnames %></p>
         </div>
       </div>
       <div class="four columns">
@@ -278,10 +283,9 @@
     <div class="row red">
       <h2>HIGHS + LOWS</h2>
       <div class="four columns">
-
-        <div class="section">
-          IMAGES WILL GO HERE
-        </div>
+        <img src="trish.jpg">
+        <img src="linkous.png">
+        <img src="jansch.png">
       </div>
       <div class="twelve columns">
         <div class="section">
@@ -329,16 +333,16 @@
         <div class="section">
           <h3>BIG NAMES</h3>
           <ol id="artistmentions">
-            <li><span class="rednums">Ariel Pink:</span> <%= @arielpink %></li>
-            <li><span class="rednums">David Byrne:</span> <%=  @davidbyrne %></li>
-            <li><span class="rednums">Kurt Cobain:</span> <%= @cobain %></li>
-            <li><span class="rednums">Thom Yorke:</span> <%= @yorke %></li>
-            <li><span class="rednums">Bruce Springsteen:</span> <%= @springsteen %></li>
-            <li><span class="rednums">Lou Reed:</span> <%= @loureed %></li>
-            <li><span class="rednums">Brian Wilson:</span> <%=  @brianwilson %></li>
-            <li><span class="rednums">John Lennon:</span> <%=  @johnlennon %></li>
-            <li><span class="rednums">Brian Eno:</span> <%=  @brianeno %></li>
-            <li><span class="rednums">Jared Leto:</span> <%=  @jaredleto %></li>
+            <li>Ariel Pink: <span class="rednums"><%= @arielpink %><span></li>
+            <li>David Byrne: <span class="rednums"><%=  @davidbyrne %><span></li>
+            <li>Kurt Cobain: <span class="rednums"><%= @cobain %><span></li>
+            <li>Thom Yorke: <span class="rednums"><%= @yorke %><span></li>
+            <li>Bruce Springsteen: <span class="rednums"><%= @springsteen %><span></li>
+            <li>Lou Reed: <span class="rednums"><%= @loureed %><span></li>
+            <li>Brian Wilson: <span class="rednums"><%=  @brianwilson %><span></li>
+            <li>John Lennon: <span class="rednums"><%=  @johnlennon %><span></li>
+            <li>Brian Eno: <span class="rednums"><%=  @brianeno %><span></li>
+            <li>Jared Leto: <span class="rednums"><%=  @jaredleto %><span></li>
           </ol>
         </div>
       </div>
@@ -441,7 +445,7 @@
     </div><!-- end of row with genre lifecycles -->
     <div class="row last">
       <div>
-        THIS IS THE FOOTER SECTION</br>
+        &copy;seldomatt 2012</br>
         THIS IS THE FOOTER SECTION</br>
         THIS IS THE FOOTER SECTION</br>
         THIS IS THE FOOTER SECTION</br>
