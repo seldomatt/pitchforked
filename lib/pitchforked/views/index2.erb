@@ -14,19 +14,19 @@
       <ol id="topline">
         <li>
           <p class="med">Reviews</p>
-          <p class="big"> <%= @reviews.count %></p>
+          <p class="big redtop"> <%= @reviews.count %></p>
         </li>
         <li>
           <p class="med">Artists</p>
-          <p class="big"><%= @artists.count %></p>
+          <p class="big redtop"><%= @artists.count %></p>
         </li>
         <li>
           <p class="med">Labels</p>
-          <p class="big"><%= @labels.count %></p>
+          <p class="big redtop"><%= @labels.count %></p>
         </li>
         <li>
           <p class="med">Authors</p>
-          <p class="big" ><%= @authors %></p>
+          <p class="big redtop" ><%= @authors %></p>
         </li>
       </ol><!-- end of topline stats list -->
     </div><!-- end of dataset -->
@@ -141,8 +141,8 @@
       <h2>AVERAGES</h2>
       <div class="four columns">
         <div class="section">
-          <p class="medrating">Avg Rating for Artists Whose Names Include "bear" "deer" "black" "crystal" "beach" "girls" or "magic":</br><span class="bigrating rednums"><%= @bandnames %></span></p>
-          <p class="smallrating">Avg Rating</br>for All Artists:</br><span class="bigrating rednums"> <%= @avgrating %></span></p>
+          <p class="smallrating">Avg Rating for Artists Whose Names Include "bear" "deer" "black" "crystal" "beach" "girls" or "magic":</br><span class="bigrating rednums"><%= @bandnames %></span></p>
+          <p class="medrating">Avg Rating</br>for All Artists:</br><span class="bigrating rednums"> <%= @avgrating %></span></p>
         </div>
       </div>
       <div class="four columns">

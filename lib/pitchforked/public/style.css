@@ -77,6 +77,10 @@ ol#avgstats li {
   border-bottom: 1px solid #EF4135;
 }
 
+.redtop {
+  color: #EF4135;
+}
+
 .bigrating {
   margin-top: 20px;
   font-size: 50px;
@@ -85,6 +89,10 @@ ol#avgstats li {
 
 ol#artistmentions li {
   font-size: 30px;
+}
+
+.smallrating {
+  font-size: 16px;
 }
 
 ol#instruments li {
