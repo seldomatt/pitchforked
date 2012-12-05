@@ -7,14 +7,15 @@ body {
 }
 
 h2 {
-  color: #EF4135;
+  color: #555;
   padding: 5px;
   font-size: 11px;
-  background-color: white;
+  background-color: #E9E9E9;
 }
 
 h3 {
   font-size: 16px;
+  padding: 10px;
   border-bottom: 1px solid #EF4135;
 }
 
@@ -23,12 +24,21 @@ td {
   padding: 2px 5px;
 }
 
+h2::after {
+  color: #EF4135;
+  font-size: 14px;
+  padding-left: 2px;
+  font-family: Menlo,Monaco,"DejaVu Sans Mono","Bitstream Vera Sans Mono","Lucida Console",monospace;
+  content: "»";
+}
+
 .container {
   background-color: #E9E9E9;  
 }
 
 #headerimg {
   width: 960px;
+  margin: 0px;
 }
 
 ol#topline li {
@@ -86,6 +96,7 @@ li span.rednums {
 .section {
   background-color: white;
   margin: 3px;
+  padding: 10px;
 }
 
 .black {
@@ -111,7 +122,27 @@ li span.rednums {
   line-height: 40px;
 }
 
+.row.last {
+  color: #EEE;
+  background-color: #555;
+  border-top: 2px solid #444;
+}
 
+img {
+  overflow: hidden;
+  margin: 10px 5px;
+}
+
+img.littlepic {
+  height: 100px;
+  width: 100px;
+  display: inline;
+}
+
+img#tvp {
+ /* margin-top: 20px;*/
+  width: 325px;
+}
 
 
 
