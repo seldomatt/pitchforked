@@ -3,6 +3,137 @@ body {
   font-size: 12px;
   font-weight: bold;
   color: #222;
+  background-color: #353535;
+}
+
+h2 {
+  color: #EF4135;
+  padding: 5px;
+  font-size: 11px;
+  background-color: white;
+}
+
+h3 {
+  font-size: 16px;
+  border-bottom: 1px solid #EF4135;
+}
+
+td {
+  color: #666;
+  padding: 2px 5px;
+}
+
+.container {
+  background-color: #E9E9E9;  
+}
+
+#headerimg {
+  width: 960px;
+}
+
+ol#topline li {
+  float: left;
+  margin: 43px;
+}
+
+ol#avgstats li {
+  float: left;
+}
+
+.med {
+  font-size: 20px;
+  width: 150px;
+  text-align: center;
+}
+
+.big {
+  font-size: 50px;
+  line-height: 50px;
+  width: 150px;
+  text-align: center;
+}
+
+.medrating {
+  font-size: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #EF4135;
+}
+
+.bigrating {
+  margin-top: 20px;
+  font-size: 50px;
+  padding: 10px;
+}
+
+ol#artistmentions li {
+  font-size: 30px;
+}
+
+ol#instruments li {
+  font-size: 22px;
+}
+
+li span.rednums {
+  color: #EF4135;
+  font-size: 25px;
+}
+
+
+.dataset {
+  background-color: white;
+}
+
+.section {
+  background-color: white;
+  margin: 3px;
+}
+
+.black {
+  border-top: 5px solid black;
+}
+
+.smallred {
+  color: #EF4135;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.red {
+  border-top: 5px solid #EF4135;
+}
+
+.row {
+  margin-bottom: 2px;
+}
+
+.important {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*body {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #222;
   line-height: 20px;
   background-color: #353535;
 }
@@ -19,29 +150,18 @@ h2 {
   width: 1000px;
   margin: 0 auto;
   padding: 40px;
-  /*height: 100%;*/
-  /*display: block;*/
 }
 
 .sectiongroup {
   border-top: solid #EF4135 5px;
   margin: 5px;
   width: ;
-  /*float: left;*/
-  /*background: white;*/
 }
 
-/*.sections {
-  background-color: white;
-  padding: 20px;
-}*/
 
 section {
   background-color:white;
   padding: 20px;
-  /*margin: 5px;*/
-  /*float: left;*/
-  /*width: 200px;*/
 }
 
 #headerimg {
@@ -78,8 +198,6 @@ ol#topline li {
 
 img#pearls {
   display: inline;
-  /*height: 150px;
-  width: 300px;*/
 }
 
 section.last {
@@ -87,7 +205,6 @@ section.last {
 }
 
 th {
-  /*color: #EF4135;*/
   padding: 2px 5px;
 }
 
@@ -113,7 +230,6 @@ h3 {
 
 .nestedtd {
   valign: top;
-  /*background-color: green;*/
   width: 33%;
 }
 
@@ -123,3 +239,4 @@ h3 {
 }
 
 
+*/

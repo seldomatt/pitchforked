@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <link href="reset.css"rel="stylesheet" type="text/css">
+  <link href="skeleton.css"rel="stylesheet" type="text/css">
+  <link href="style.css"rel="stylesheet" type="text/css"> 
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <img id="headerimg" src="pforkheader.png">
+    </div><!-- end of header row -->
+    <div class="row dataset black">
+      <ol id="topline">
+        <li>
+          <p class="med">Reviews</p>
+          <p class="big"> <%= @reviews.count %></p>
+        </li>
+        <li>
+          <p class="med">Artists</p>
+          <p class="big"><%= @artists.count %></p>
+        </li>
+        <li>
+          <p class="med">Labels</p>
+          <p class="big"><%= @labels.count %></p>
+        </li>
+        <li>
+          <p class="med">Authors</p>
+          <p class="big" ><%= @authors %></p>
+        </li>
+      </ol><!-- end of topline stats list -->
+    </div><!-- end of dataset -->
+    <div class="row red">
+      <h2>AUTHORS</h2>
+      <div class="one-third column">
+        <div class="section">
+        <h3>20 Most Prolific Authors</h3>
+          <table>
+            <tr>
+              <th>Author</th>
+              <th># of Reviews</th>
+            </tr>
+          <% @prolific_auths.each do |review| %>
+            <tr>
+              <td><%= review.author %></td>
+              <td><%= review.count %></td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="one-third column">
+        <div class="section">
+        <h3>Highest Scoring Authors</h3>
+          <table>
+            <tr>
+              <th>Author</th>
+              <th>Avg Rating</th>
+            </tr>
+            <% @topauths.each do |review| %>
+            <% author, avgrating = *review %>
+            <tr>
+              <td><%= author %></td>
+              <td><%= avgrating.round(2) %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="one-third column">
+        <div class="section">
+        <h3>Lowest Scoring Authors</h3>
+          <table>
+            <tr>
+              <th>Author</th>
+              <th>Avg Rating</th>
+            </tr>
+            <% @bottomauths.each do |review| %>
+            <% author, avgrating = *review %>
+            <tr>
+              <td><%= author %></td>
+              <td><%= avgrating.round(2) %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div><!-- end of authors div -->
+    <div class="row red">
+      <h2>BNMs</h2>
+      <div class="one-third column">
+        <div class="section">
+        <h3>Top 10 BNM Authors</h3>
+          <table>
+            <tr>
+              <th>Author</th>
+              <th>BNMs</th>
+            </tr>
+          <% @bnm_auths.each do |review| %>
+            <tr>
+              <td><%= review.author %></td>
+              <td><%= review.count %></td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="one-third column">
+        <div class="section">
+        <h3>Top 15 BNM'd Record Labels</h3>
+          <table>
+            <tr>
+              <th>Label</th>
+              <th>BNMs</th>
+            </tr>
+          <% @bnm_labels.each do |label| %>
+            <tr>
+              <td><%= label.name %></td>
+              <td><%= label.count %></td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="one-third column">
+        <div class="section">
+        <h3>Top 25 BNM'd Artists</h3>
+          <table>
+            <tr>
+              <th>Artist</th>
+              <th>BNMs</th>
+            </tr>
+          <% @bnm_artists.each do |artist| %>
+            <tr>
+              <td><%= artist.name %></td>
+              <td><%= artist.count %></td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
+      </div>
+    </div><!-- end of the bnms div -->
+    <div class="row red">
+      <h2>RATINGS</h2>
+      <div class="one-third column">
+        <div class="section">
+        <h3>Top Rated Artists</h3>
+          <table>
+            <tr>
+              <th>Artist</th>
+              <th>Avg Rating</th>
+            </tr>
+            <% @topartists.each do |review| %>
+            <% artist, avgrating = *review %>
+            <tr>
+              <td><%= artist %></td>
+              <td><%= avgrating.round(2) %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="one-third column">
+        <div class="section">
+          <p>IMAGES GO HERE</p>
+        </div>
+      </div><!-- end of center picture column -->
+      <div class="one-third column">
+        <div class="section">
+        <h3>Lowest Rated Artists</h3>
+          <table>
+            <tr>
+              <th>Artist</th>
+              <th>Avg Rating</th>
+            </tr>
+            <% @bottomartists.each do |review| %>
+            <% artist, avgrating = *review %>
+            <tr>
+              <td><%= artist %></td>
+              <td><%= avgrating.round(2) %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div><!-- end of artists ratings div -->
+    <div class="row">
+      <div class="four columns">
+        <div class="section">
+          <p class="medrating">Avg Rating </br>for All Artists</p>
+          </br>
+          </br>
+          </br>
+          <p class="bigrating"><%= @avgrating %></p>
+        </div>
+      </div>
+      <div class="four columns">
+        <div class="section">
+          <p class="medrating">Avg Rating for Artists Whose Names Include:</p></br>
+          <p class="smallred">"bear" "deer" "black" "crystal" "beach" "girls" or "magic":
+          <p class="bigrating"><%= @bandnames %></p>
+        </div>
+      </div>
+      <div class="four columns">
+        <div class="section">
+          <h3>Avg Ratings by Year (with total review counts)</h3>
+            <table>
+              <tr>
+                <th>Year</th>
+                <th>Total Reviews</th>
+                <th>Avg Rating</th>
+              </tr>
+              <% @avgbyyear.each do |review| %>
+              <tr>
+                <td><%= review.year %></td>
+                <td><%= review.count %></td>
+                <td><%= review.avg.round(2) %></td>
+              </tr>
+              <% end %>
+            </table>
+        </div>
+      </div>
+      <div class="four columns">
+        <div class="section">
+          IMAGES WILL GO HERE
+        </div>
+      </div>
+    </div><!-- end of random row -->
+    <div class="row">
+      <div class="one-third column">
+        <div class="section">
+        <h3>Highest Rated Labels</h3>
+          <table>
+            <tr>
+              <th>Label</th>
+              <th>Avg Rating</th>
+            </tr>
+            <% @toplabels.each do |review| %>
+            <% label, avgrating = *review %>
+            <tr>
+              <td><%= label %></td>
+              <td><%= avgrating.round(2) %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="one-third column">
+        <div class="section">
+          <h3>Lowest Rated Labels</h3>
+            <table>
+              <tr>
+                <th>Label</th>
+                <th>Avg Rating</th>
+              </tr>
+              <% @bottomlabels.each do |review| %>
+              <% label, avgrating = *review %>
+              <tr>
+                <td><%= label %></td>
+                <td><%= avgrating.round(2) %></td>
+              </tr>
+              <% end %>
+            </table>
+        </div>
+      </div>
+    </div><!-- end of record label ratings -->
+    <div class="row red">
+      <h2>HIGHS + LOWS</h2>
+      <div class="four columns">
+        <div class="section">
+          IMAGES WILL GO HERE
+        </div>
+      </div>
+      <div class="twelve columns">
+        <div class="section">
+        <h3>Perfect Tens</h3>
+          <table>
+            <tr>
+              <th>Album</th>
+              <th>Artist</th>
+            </tr>
+            <% @perfect.each do |review| %>
+            <tr>
+              <td><%= review.album.name %> (<%= review.year %>)</td>
+              <td><%= review.album.artist.name %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div><!-- end of row with perfect tens -->
+    <div class="row">
+      <div class="six columns">
+        <div class="section">
+        <h3>Perfect Zeros</h3>
+          <table>
+            <tr>
+              <th>Album</th>
+              <th>Artist</th>
+            </tr>
+            <% @zero.each do |review| %>
+            <tr>
+              <td><%= review.album.name %>  (<%= review.year %>)</td>
+              <td><%= review.album.artist.name %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="ten columns">
+        <div class="section">
+          IMAGES WILL GO HERE
+        </div>
+      </div>
+    </div><!-- end of perfect zeros row -->
+    <div class="row red">
+      <h2>MENTIONS</h2>
+      <div class="two-thirds column">
+        <div class="section">
+          <h3>BIG NAMES</h3>
+          <ol id="artistmentions">
+            <li><span class="rednums">Ariel Pink:</span> <%= @arielpink %></li>
+            <li><span class="rednums">David Byrne:</span> <%=  @davidbyrne %></li>
+            <li><span class="rednums">Kurt Cobain:</span> <%= @cobain %></li>
+            <li><span class="rednums">Thom Yorke:</span> <%= @yorke %></li>
+            <li><span class="rednums">Bruce Springsteen:</span> <%= @springsteen %></li>
+            <li><span class="rednums">Lou Reed:</span> <%= @loureed %></li>
+            <li><span class="rednums">Brian Wilson:</span> <%=  @brianwilson %></li>
+            <li><span class="rednums">John Lennon:</span> <%=  @johnlennon %></li>
+            <li><span class="rednums">Brian Eno:</span> <%=  @brianeno %></li>
+            <li><span class="rednums">Jared Leto:</span> <%=  @jaredleto %></li>
+          </ol>
+        </div>
+      </div>
+      <div class="one-third column">
+        <div class="section">
+          <h3>Instruments</h3>
+          <ol id="instruments">
+            <li>Guitar: <%= @guitars %> </li>
+            <li>Synth: <%=  @synths %> </li>
+            <li>Sampler: <%= @samplers %></li> 
+            <li>Zither: <%= @zithers %></li>
+            <li>Didgeridoo: <%= @didges %></li> 
+          </ol>
+        </div>
+      </div>
+
+    </div><!-- end of row with artist mentions -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div><!-- end of the container -->
+</body>
+</html>
