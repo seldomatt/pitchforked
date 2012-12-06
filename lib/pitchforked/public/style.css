@@ -33,6 +33,24 @@ h2::after {
   content: "»";
 }
 
+footer {
+  position: relative; 
+  width: 1040px;
+  background-color: #858585;
+  margin: 0 auto;
+}
+
+#footerimg {
+  padding-top: 5px;
+  padding-left: 30px;
+}
+
+#footercopy {
+  padding: 30px;
+  color: #CCC;
+  font-weight: normal;
+}
+
 /*.row {
   padding-left: 5px;
   padding-right: 5px;
