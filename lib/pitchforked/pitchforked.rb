@@ -1,4 +1,4 @@
-require 'sinatra'
+require 'sinatra/base'
 require 'sinatra/reloader' 
 require_relative 'dbconfig'
 require_relative 'review'
@@ -8,9 +8,9 @@ require_relative 'artist'
 
 
 class Pitchforked < Sinatra::Base
-  # configure :development do 
-  #   register Sinatra::Reloader
-  # end
+  configure :development do 
+    register Sinatra::Reloader
+  end
 
   get '/' do 
     @reviews = Review.find(:all)
