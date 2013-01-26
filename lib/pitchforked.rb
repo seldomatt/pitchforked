@@ -1,16 +1,21 @@
 #require 'sinatra/base'
 #require 'sinatra/reloader' 
-require_relative 'dbconfig'
+#require_relative 'dbconfig'
+
+class Pitchforked < Sinatra::Base
+  register Sinatra::ActiveRecordExtension
+# configure :development do 
+#   register Sinatra::Reloader
+# end
+require 'sinatra/activerecord'
+  configure :development do 
+    set :database, 'sqlite3:///lib/pitchforked.db'
+  end
 require_relative 'review'
 require_relative 'album'
 require_relative 'label'
 require_relative 'artist'
 
-
-class Pitchforked < Sinatra::Base
-# configure :development do 
-#   register Sinatra::Reloader
-# end
 
   get '/' do 
 
