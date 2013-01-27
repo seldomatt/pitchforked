@@ -1,4 +1,5 @@
-#require 'sinatra/base'
+require 'sinatra/base'
+require 'sinatra/activerecord'
 #require 'sinatra/reloader' 
 #require_relative 'dbconfig'
 
@@ -9,7 +10,7 @@ class Pitchforked < Sinatra::Base
 # end
 require 'sinatra/activerecord'
   configure :development do 
-    set :database, 'sqlite3:///lib/pitchforked.db'
+    set :database, 'postgres:///pitchforked2'
   end
 require_relative 'review'
 require_relative 'album'
