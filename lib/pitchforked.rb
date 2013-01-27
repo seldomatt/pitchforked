@@ -9,9 +9,26 @@ class Pitchforked < Sinatra::Base
 #   register Sinatra::Reloader
 # end
 require 'sinatra/activerecord'
+
   configure :development do 
     set :database, 'postgres:///pitchforked2'
   end
+  
+  configure :production do 
+
+    db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///pitchforked2')
+
+    ActiveRecord::Base.establish_connection(
+      :adapter => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+      :host => db.host,
+      :port => db.port,
+      :username => db.user, 
+      :password => db.password, 
+      :database => db.path[1..-1],
+      :encoding => 'utf8'
+      )
+  end
+
 require_relative 'review'
 require_relative 'album'
 require_relative 'label'
