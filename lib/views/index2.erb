@@ -158,7 +158,7 @@
               <tr>
                 <td><%= review.year %></td>
                 <td><%= review.count %></td>
-                <td><%= review.avg.round(2) %></td>
+                <td><%= review.avg.to_f.round(2) %></td>
               </tr>
               <% end %>
             </table>

@@ -3,9 +3,9 @@ require 'active_record'
 class Review < ActiveRecord::Base
   belongs_to :album
   scope :bnm, where(:bnm => 1)
-  scope :sigauths, select('author, count(*) AS count').group('author').having('count > ?', 5)
-  scope :siglabels, select('labels.name, count(*) AS count').joins(:album => :label).group('labels.name').having('count > ?', 10) 
-  scope :sigartists, select('artists.name, count(*) AS count').joins(:album => :artist).group('artists.name').having('count > ?', 1)
+  scope :sigauths, select('author, count(*) AS count').group('author').having('count(*) > ?', 5)
+  scope :siglabels, select('labels.name, count(*) AS count').joins(:album => :label).group('labels.name').having('count(*) > ?', 10) 
+  scope :sigartists, select('artists.name, count(*) AS count').joins(:album => :artist).group('artists.name').having('count(*) > ?', 1)
   scope :year, lambda { |year| where(:year => year) }
 
   def self.artist_name_like(str)
