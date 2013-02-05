@@ -3,6 +3,7 @@ require 'sqlite3'
 require 'open-uri'
 require 'active_record'
 
+ActiveRecord::Base.logger = nil
 #require_relative 'dbconfig'
 require_relative 'pitchforked'
 require_relative 'review'
@@ -13,8 +14,7 @@ require_relative 'label'
 reviewlinks = []
 n = 1
 doc = Nokogiri::HTML(open("http://pitchfork.com/reviews/albums/#{n}/"))
-#while doc.css(".next-container").text
-while n < 2
+while doc.css(".next-container").text
   if doc.css(".next-container").text.include?("Next")
     doc.css(".object-grid ul li a").each do |review|
       unless Review.find_by_url(review["href"])
