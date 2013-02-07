@@ -14,19 +14,19 @@
       <ol id="topline">
         <li>
           <p class="med">Reviews</p>
-          <p class="big redtop"> <%= @reviews.count %></p>
+          <p class="big redtop"> <%= thousandize(@reviews.count) %></p>
         </li>
         <li>
           <p class="med">Artists</p>
-          <p class="big redtop"><%= @artists.count %></p>
+          <p class="big redtop"><%= thousandize(@artists.count) %></p>
         </li>
         <li>
           <p class="med">Labels</p>
-          <p class="big redtop"><%= @labels.count %></p>
+          <p class="big redtop"><%= thousandize(@labels.count) %></p>
         </li>
         <li>
           <p class="med">Authors</p>
-          <p class="big redtop" ><%= @authors %></p>
+          <p class="big redtop" ><%= thousandize(@authors) %></p>
         </li>
       </ol><!-- end of topline stats list -->
     </div><!-- end of dataset -->
@@ -234,9 +234,9 @@
         <div class="section">
           <h3>INSTRUMENTS</h3>
           <ol id="instruments">
-            <li><p class="medrating">Guitar:<span class="bigrating rednums"><%= @guitars %></span></p></li>
-            <li><p class="medrating">Synth:<span class="bigrating rednums"><%=  @synths %></span></p></li>
-            <li><p class="medrating">Sampler:<span class="bigrating rednums"><%= @samplers %></span></p></li> 
+            <li><p class="medrating">Guitar:<span class="bigrating rednums"><%= thousandize(@guitars) %></span></p></li>
+            <li><p class="medrating">Synth:<span class="bigrating rednums"><%=  thousandize(@synths) %></span></p></li>
+            <li><p class="medrating">Sampler:<span class="bigrating rednums"><%= thousandize(@samplers) %></span></p></li> 
             <li><p class="medrating">Zither:<span class="bigrating rednums"><%= @zithers %></span></p></li>
             <li><p class="medrating">Didgeridoo:<span class="bigrating rednums"><%= @didges %></span></p></li> 
           </ol>

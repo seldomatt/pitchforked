@@ -34,6 +34,27 @@ require_relative 'album'
 require_relative 'label'
 require_relative 'artist'
 
+helpers do
+
+  def thousandize(number)
+    num = number.to_s
+    new_num = ""
+    digits = number.to_s.length
+    if digits > 3
+      num.scan(/\d/).reverse.each_with_index do |n, i|
+        if  i != 0 && i % 3 == 0
+          new_num << ",#{n}"
+        else
+          new_num << n
+        end
+      end
+      new_num.reverse.gsub(/^,/,"")
+    else
+      num
+    end
+  end
+end
+
 
   get '/' do 
 
@@ -57,16 +78,16 @@ require_relative 'artist'
     @avgbyyear = Review.avg_rating_per_year
     @perfect = Review.perfect_ratings
     @zero = Review.zero_ratings
-    @arielpink = Review.body_name_drop("ariel pink")
-    @cobain = Review.body_name_drop("cobain")
-    @loureed = Review.body_name_drop("lou reed")
-    @brianwilson = Review.body_name_drop("brian wilson")
-    @brianeno = Review.body_name_drop("brian eno")
-    @davidbyrne = Review.body_name_drop("david byrne")
-    @johnlennon = Review.body_name_drop("lennon")
-    @jaredleto = Review.body_name_drop("jared leto")
-    @springsteen = Review.body_name_drop("springsteen")
-    @yorke = Review.body_name_drop("thom yorke")
+    @arielpink = Review.body_name_drop("Ariel Pink")
+    @cobain = Review.body_name_drop("Cobain")
+    @loureed = Review.body_name_drop("Lou Reed")
+    @brianwilson = Review.body_name_drop("Brian Wilson")
+    @brianeno = Review.body_name_drop("Brian Eno")
+    @davidbyrne = Review.body_name_drop("David Byrne")
+    @johnlennon = Review.body_name_drop("Lennon")
+    @jaredleto = Review.body_name_drop("Jared Leto")
+    @springsteen = Review.body_name_drop("Springsteen")
+    @yorke = Review.body_name_drop("Thom Yorke")
     @guitars = Review.body_name_drop(" guitar ")
     @synths = Review.body_name_drop(" synth ")
     @samplers = Review.body_name_drop(" sampler ")
