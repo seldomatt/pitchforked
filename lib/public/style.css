@@ -14,6 +14,12 @@ h2 {
   background-color: #E9E9E9;
 }
 
+.headerimage {
+  position: relative;
+  margin: 0 auto;
+  width: 1040px;
+}
+
 h3 {
   font-size: 16px;
   padding: 10px;
@@ -63,7 +69,7 @@ footer {
 }
 
 #headerimg {
-  width: 960px;
+  width: 1040px;
   margin: 0px;
 }
 
@@ -93,6 +99,34 @@ ol#avgstats li {
   font-size: 20px;
   padding: 10px;
   border-bottom: 1px solid #EF4135;
+}
+
+#navigationsection {
+  background-color: white;
+}
+
+ul#navigation li {
+  float: left;
+  margin: 15px;
+  font-size: 15px;
+}
+
+ul#navigation a {
+  color: #222;
+  text-decoration: none;
+}
+
+ul#navigation a:hover {
+  color:  #EF4135;
+  text-decoration: none;
+}
+
+li#firstnav {
+  padding-left: 100px;
+}
+
+li#lastnav {
+  padding-right: 100px;
 }
 
 .redtop {
@@ -129,9 +163,6 @@ li span.rednums {
 }
 
 
-.dataset {
-  background-color: white;
-}
 
 .section {
   background-color: white;
@@ -175,8 +206,16 @@ td {
   border-top: 5px solid #353535;
 }
 
+.dataset {
+  border-top: 0px;
+  background-color: white;
+}
 .row {
   margin-bottom: 15px;
+}
+
+.row.headerimage {
+  margin-bottom: 0px;
 }
 
 .important {

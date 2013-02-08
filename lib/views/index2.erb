@@ -6,10 +6,21 @@
   <link href="style.css"rel="stylesheet" type="text/css"> 
 </head>
 <body>
-  <div class="container">
-    <div class="row">
+    <div class="row headerimage">
       <img id="headerimg" src="pforkedlogo.jpg">
+    <div class="row dataset">
+      <ul id="navigation">
+        <li id="firstnav"><a href=#bnms>BNMS</a></li>
+        <li><a href=#artists>RatingsxArtists</a></li>
+        <li><a href=#avgs>Averages</a></li>
+        <li><a href=#labels>RatingsxLabels</a></li>
+        <li><a href=#mentions>Mentions</a></li>
+        <li><a href=#authors>Authors</a></li>
+        <li id="lastnav"><a href=#highslows>Highs+Lows</a></li>
+      </ul>
+    </div><!--end of nav row -->
     </div><!-- end of header row -->
+  <div class="container">
     <div class="row dataset red">
       <ol id="topline">
         <li>
@@ -30,7 +41,7 @@
         </li>
       </ol><!-- end of topline stats list -->
     </div><!-- end of dataset -->
-    <div class="row red">
+    <div id="bnms" class="row red">
       <h2>BNMs</h2>
       <div class="one-third column">
         <div class="section">
@@ -92,7 +103,7 @@
     </div><!-- end of the bnms div -->
     
     
-    <div class="row red">
+    <div class="row red" id="artists">
       <h2>RATINGS × ARTISTS</h2>
       <div class="one-third column">
         <img src="pearls.jpg">
@@ -137,7 +148,7 @@
         </div>
       </div>
     </div><!-- end of artists ratings div -->
-    <div class="row red">
+    <div class="row red" id="avgs">
       <h2>AVERAGES</h2>
       <div class="four columns">
         <div class="section">
@@ -168,7 +179,7 @@
         <img src="buffy.jpg">
       </div>
     </div><!-- end of random row -->
-    <div class="row red">
+    <div class="row red" id="labels">
       <h2>RATINGS × LABELS</h2>
       <div class="one-third column">
         <div class="section">
@@ -211,7 +222,7 @@
         <img id="drakeimg"src="drake.jpg">
       </div>
     </div><!-- end of record label ratings -->
-    <div class="row red">
+    <div class="row red" id="mentions">
       <h2>MENTIONS</h2>
       <div class="two-thirds column">
         <div class="section">
@@ -243,7 +254,7 @@
         </div>
       </div>
     </div><!-- end of row with artist mentions -->
-    <div class="row red">
+    <div class="row red" id="authors">
       <h2>AUTHORS</h2>
       <div class="one-third column">
         <div class="section">
@@ -304,7 +315,7 @@
         <img class="littlepic" src="alee.jpg">
       </div>
     </div><!-- end of authors div -->
-    <div class="row red">
+    <div class="row red" id="highslows">
       <h2>HIGHS + LOWS</h2>
       <div class="four columns">
         <img src="trish.jpg">
