@@ -78,6 +78,10 @@ ol#topline li {
   margin: 43px;
 }
 
+#firsttopline {
+  padding-left: 50px;
+}
+
 ol#avgstats li {
   float: left;
 }
@@ -122,7 +126,7 @@ ul#navigation a:hover {
 }
 
 li#firstnav {
-  padding-left: 100px;
+  padding-left: 135px;
 }
 
 li#lastnav {
@@ -203,7 +207,7 @@ td {
 }*/
 
 .red {
-  border-top: 5px solid #353535;
+  border-top: 2px solid #D2D2D2;
 }
 
 .dataset {
@@ -216,6 +220,15 @@ td {
 
 .row.headerimage {
   margin-bottom: 0px;
+}
+
+.row.dataset {
+  margin-bottom: 2px;
+}
+
+.row.topline {
+  margin-bottom: 0px;
+  border-bottom: 2px solid #D2D2D2;
 }
 
 .important {
@@ -232,6 +245,10 @@ td {
 img {
   overflow: hidden;
   margin: 10px 5px;
+}
+
+img#tibet {
+  margin: 10px 20px 0px 0px;
 }
 
 img.littlepic {
@@ -312,7 +329,8 @@ section {
 
 ol#topline li {
   float: left;
-  margin: 43px;
+  margin: 60px;
+  background-color: red;
 }
 
 .med {

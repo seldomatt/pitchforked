@@ -19,11 +19,9 @@
         <li id="lastnav"><a href=#highslows>Highs+Lows</a></li>
       </ul>
     </div><!--end of nav row -->
-    </div><!-- end of header row -->
-  <div class="container">
-    <div class="row dataset red">
+    <div class="row dataset red topline">
       <ol id="topline">
-        <li>
+        <li id="firsttopline">
           <p class="med">Reviews</p>
           <p class="big redtop"> <%= thousandize(@reviews.count) %></p>
         </li>
@@ -41,7 +39,9 @@
         </li>
       </ol><!-- end of topline stats list -->
     </div><!-- end of dataset -->
-    <div id="bnms" class="row red">
+    </div><!-- end of header row -->
+  <div class="container">
+    <div id="bnms" class="row">
       <h2>BNMs</h2>
       <div class="one-third column">
         <div class="section">
@@ -155,6 +155,9 @@
           <p class="smallrating">Avg Rating for Artists Whose Names Include "bear" "deer" "black" "crystal" "beach" "girls" or "magic":</br><span class="bigrating rednums"><%= @bandnames %></span></p>
           <p class="medrating">Avg Rating</br>for All Artists:</br><span class="bigrating rednums"> <%= @avgrating %></span></p>
         </div>
+      </div>
+      <div class="four columns">
+        <img id="tibet" src="tibet.jpg">
       </div>
       <div class="four columns">
         <div class="section">
@@ -362,91 +365,6 @@
         <img src="seb.jpg">
       </div>
     </div><!-- end of perfect zeros row -->
-    
-    <div class="row red">
-      <h2>GENRE LIFECYCLES</h2>
-      <div class="one-third column">
-        <div class="section">
-          <h3>Electroclash</h3>
-          <table>
-            <tr>
-              <th>Year</th>
-              <th>Mentions</th>
-            </tr>
-            <tr>
-              <td>2002</td>
-              <td><%= @electro02 %></td>
-            </tr>
-            <tr>
-              <td>2003</td>
-              <td><%= @electro03 %></td>
-            </tr>
-            <tr>
-              <td>2004</td>
-              <td><%= @electro04 %></td>
-            </tr>
-            <tr>
-              <td>2012</td>
-              <td><%= @electro12 %></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="one-third column">
-        <div class="section">
-          <h3>Chillwave</h3>
-          <table>
-            <tr>
-              <th>Year</th>
-              <th>Mentions</th>
-            </tr>
-            <tr>
-              <td>2009</td>
-              <td><%= @chill09 %></td>
-            </tr>
-            <tr>
-              <td>2010</td>
-              <td><%= @chill10 %></td>
-            </tr>
-            <tr>
-              <td>2011</td>
-              <td><%= @chill11 %></td>
-            </tr>
-            <tr>
-              <td>2012</td>
-              <td><%= @chill12 %></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="one-third column">
-        <div class="section">
-          <h3>Balearic ?</h3>
-          <table>
-            <tr>
-              <th>Year</th>
-              <th>Mentions</th>
-            </tr>
-            <tr>
-              <td>2007</td>
-              <td><%= @balearic07 %></td>
-            </tr>
-            <tr>
-              <td>2008</td>
-              <td><%= @balearic08 %></td>
-            </tr>
-            <tr>
-              <td>2009</td>
-              <td><%= @balearic09 %></td>
-            </tr>
-            <tr>
-              <td>2010</td>
-              <td><%= @balearic10 %></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div><!-- end of row with genre lifecycles -->
   </div><!-- end of the container -->
   <footer>
     <div id="footerimg">
@@ -457,7 +375,6 @@
         </br>
         </br>
         </br>
-        
     </div>
   </footer>
 </body>
