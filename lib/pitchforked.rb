@@ -3,118 +3,119 @@ require 'sinatra/activerecord'
 #require 'sinatra/reloader' 
 #require_relative 'dbconfig'
 
+configure :production do
+
+	require 'newrelic_rpm'
+
+end
+
 class Pitchforked < Sinatra::Base
-  register Sinatra::ActiveRecordExtension
-# configure :development do 
-#   register Sinatra::Reloader
-# end
-require 'sinatra/activerecord'
+	register Sinatra::ActiveRecordExtension
 
-  configure :development do 
-    set :database, 'postgres:///pitchforked2'
-  end
-  
-  configure :production do
+	require 'sinatra/activerecord'
 
-		require 'newrelic_rpm'
+	configure :development do
+		set :database, 'postgres:///pitchforked2'
+	end
 
-    db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///pitchforked2')
+	configure :production do
 
-    ActiveRecord::Base.establish_connection(
-      :adapter => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
-      :host => db.host,
-      :port => db.port,
-      :username => db.user, 
-      :password => db.password, 
-      :database => db.path[1..-1],
-      :encoding => 'utf8'
-      )
-  end
+		db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///pitchforked2')
 
-require_relative 'review'
-require_relative 'album'
-require_relative 'label'
-require_relative 'artist'
+		ActiveRecord::Base.establish_connection(
+			:adapter => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+			:host => db.host,
+			:port => db.port,
+			:username => db.user,
+			:password => db.password,
+			:database => db.path[1..-1],
+			:encoding => 'utf8'
+		)
+	end
 
-helpers do
+	require_relative 'review'
+	require_relative 'album'
+	require_relative 'label'
+	require_relative 'artist'
 
-  def thousandize(number)
-    num = number.to_s
-    new_num = ""
-    digits = number.to_s.length
-    if digits > 3
-      num.scan(/\d/).reverse.each_with_index do |n, i|
-        if  i != 0 && i % 3 == 0
-          new_num << ",#{n}"
-        else
-          new_num << n
-        end
-      end
-      new_num.reverse.gsub(/^,/,"")
-    else
-      num
-    end
-  end
-end
+	helpers do
+
+		def thousandize(number)
+			num = number.to_s
+			new_num = ""
+			digits = number.to_s.length
+			if digits > 3
+				num.scan(/\d/).reverse.each_with_index do |n, i|
+					if  i != 0 && i % 3 == 0
+						new_num << ",#{n}"
+					else
+						new_num << n
+					end
+				end
+				new_num.reverse.gsub(/^,/, "")
+			else
+				num
+			end
+		end
+	end
 
 
-  get '/' do 
+	get '/' do
 
-    cache_control :public, :must_revalidate, :max_age => 60
+		cache_control :public, :must_revalidate, :max_age => 60
 
-    @reviews = Review.find(:all)
-    @labels = Label.find(:all)
-    @artists = Artist.find(:all)
-    @authors = Review.authors_count
-    @prolific_auths = Review.top_20_authors
-    @topauths = Review.highest_rated_auths
-    @bottomauths = Review.lowest_rated_auths
-    @bnm_auths = Review.top_10_bnm_auths
-    @bnm_labels = Review.most_bnm_labels
-    @bnm_artists = Review.most_bnm_artists
-    @topartists = Review.highest_rated_artists  
-    @bottomartists = Review.lowest_rated_artists
-    @toplabels = Review.top_rated_labels
-    @bandnames = Review.band_names.average_rating
-    @avgrating = Review.average_rating
-    @avgbyyear = Review.avg_rating_per_year
-    @perfect = Review.perfect_ratings
-    @zero = Review.zero_ratings
-    @arielpink = Review.body_name_drop("Ariel Pink")
-    @cobain = Review.body_name_drop("Cobain")
-    @loureed = Review.body_name_drop("Lou Reed")
-    @brianwilson = Review.body_name_drop("Brian Wilson")
-    @brianeno = Review.body_name_drop("Brian Eno")
-    @davidbyrne = Review.body_name_drop("David Byrne")
-    @johnlennon = Review.body_name_drop("Lennon")
-    @jaredleto = Review.body_name_drop("Jared Leto")
-    @springsteen = Review.body_name_drop("Springsteen")
-    @yorke = Review.body_name_drop("Thom Yorke")
-    @guitars = Review.body_name_drop(" guitar ")
-    @synths = Review.body_name_drop(" synth ")
-    @samplers = Review.body_name_drop(" sampler ")
-    @zithers = Review.body_name_drop(" zither ")
-    @didges = Review.body_name_drop(" didgeridoo ")
-    @electro02 = Review.body_name_drop_by_year("electroclash", "2002")
-    @electro03 = Review.body_name_drop_by_year("electroclash", "2003")
-    @electro04 = Review.body_name_drop_by_year("electroclash", "2004")
-    @electro12 = Review.body_name_drop_by_year("electroclash", "2012")
-    @chill09 = Review.body_name_drop_by_year("chillwave", "2009")
-    @chill10 = Review.body_name_drop_by_year("chillwave", "2010")
-    @chill11 = Review.body_name_drop_by_year("chillwave", "2011")
-    @chill12 = Review.body_name_drop_by_year("chillwave", "2012")
-    @balearic07 = Review.body_name_drop_by_year("balearic", "2007")
-    @balearic08 = Review.body_name_drop_by_year("balearic", "2008")
-    @balearic09 = Review.body_name_drop_by_year("balearic", "2009")
-    @balearic10 = Review.body_name_drop_by_year("balearic", "2010")
-    @bottomlabels = Review.lowest_rated_labels
-    @bnms = Review.bnm_percent
-    @bnmrating = Review.bnm.average_rating
-    erb :index2
-  end
+		@reviews = Review.find(:all)
+		@labels = Label.find(:all)
+		@artists = Artist.find(:all)
+		@authors = Review.authors_count
+		@prolific_auths = Review.top_20_authors
+		@topauths = Review.highest_rated_auths
+		@bottomauths = Review.lowest_rated_auths
+		@bnm_auths = Review.top_10_bnm_auths
+		@bnm_labels = Review.most_bnm_labels
+		@bnm_artists = Review.most_bnm_artists
+		@topartists = Review.highest_rated_artists
+		@bottomartists = Review.lowest_rated_artists
+		@toplabels = Review.top_rated_labels
+		@bandnames = Review.band_names.average_rating
+		@avgrating = Review.average_rating
+		@avgbyyear = Review.avg_rating_per_year
+		@perfect = Review.perfect_ratings
+		@zero = Review.zero_ratings
+		@arielpink = Review.body_name_drop("Ariel Pink")
+		@cobain = Review.body_name_drop("Cobain")
+		@loureed = Review.body_name_drop("Lou Reed")
+		@brianwilson = Review.body_name_drop("Brian Wilson")
+		@brianeno = Review.body_name_drop("Brian Eno")
+		@davidbyrne = Review.body_name_drop("David Byrne")
+		@johnlennon = Review.body_name_drop("Lennon")
+		@jaredleto = Review.body_name_drop("Jared Leto")
+		@springsteen = Review.body_name_drop("Springsteen")
+		@yorke = Review.body_name_drop("Thom Yorke")
+		@guitars = Review.body_name_drop(" guitar ")
+		@synths = Review.body_name_drop(" synth ")
+		@samplers = Review.body_name_drop(" sampler ")
+		@zithers = Review.body_name_drop(" zither ")
+		@didges = Review.body_name_drop(" didgeridoo ")
+		@electro02 = Review.body_name_drop_by_year("electroclash", "2002")
+		@electro03 = Review.body_name_drop_by_year("electroclash", "2003")
+		@electro04 = Review.body_name_drop_by_year("electroclash", "2004")
+		@electro12 = Review.body_name_drop_by_year("electroclash", "2012")
+		@chill09 = Review.body_name_drop_by_year("chillwave", "2009")
+		@chill10 = Review.body_name_drop_by_year("chillwave", "2010")
+		@chill11 = Review.body_name_drop_by_year("chillwave", "2011")
+		@chill12 = Review.body_name_drop_by_year("chillwave", "2012")
+		@balearic07 = Review.body_name_drop_by_year("balearic", "2007")
+		@balearic08 = Review.body_name_drop_by_year("balearic", "2008")
+		@balearic09 = Review.body_name_drop_by_year("balearic", "2009")
+		@balearic10 = Review.body_name_drop_by_year("balearic", "2010")
+		@bottomlabels = Review.lowest_rated_labels
+		@bnms = Review.bnm_percent
+		@bnmrating = Review.bnm.average_rating
+		erb :index2
+	end
 
 end
-
 
 
 #Pitchforked.run!
