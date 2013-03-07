@@ -14,7 +14,9 @@ require 'sinatra/activerecord'
     set :database, 'postgres:///pitchforked2'
   end
   
-  configure :production do 
+  configure :production do
+
+		require 'newrelic_rpm'
 
     db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///pitchforked2')
 
