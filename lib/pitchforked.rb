@@ -18,6 +18,8 @@ class Pitchforked < Sinatra::Base
 
 	configure :production do
 
+		require 'newrelic_rpm'
+
 		db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///pitchforked2')
 
 		ActiveRecord::Base.establish_connection(
