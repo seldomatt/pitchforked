@@ -1,7 +1,5 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-#require 'sinatra/reloader' 
-#require_relative 'dbconfig'
 
 configure :production do
 
@@ -97,18 +95,6 @@ class Pitchforked < Sinatra::Base
 		@samplers = Review.body_name_drop(" sampler ")
 		@zithers = Review.body_name_drop(" zither ")
 		@didges = Review.body_name_drop(" didgeridoo ")
-		@electro02 = Review.body_name_drop_by_year("electroclash", "2002")
-		@electro03 = Review.body_name_drop_by_year("electroclash", "2003")
-		@electro04 = Review.body_name_drop_by_year("electroclash", "2004")
-		@electro12 = Review.body_name_drop_by_year("electroclash", "2012")
-		@chill09 = Review.body_name_drop_by_year("chillwave", "2009")
-		@chill10 = Review.body_name_drop_by_year("chillwave", "2010")
-		@chill11 = Review.body_name_drop_by_year("chillwave", "2011")
-		@chill12 = Review.body_name_drop_by_year("chillwave", "2012")
-		@balearic07 = Review.body_name_drop_by_year("balearic", "2007")
-		@balearic08 = Review.body_name_drop_by_year("balearic", "2008")
-		@balearic09 = Review.body_name_drop_by_year("balearic", "2009")
-		@balearic10 = Review.body_name_drop_by_year("balearic", "2010")
 		@bottomlabels = Review.lowest_rated_labels
 		@bnms = Review.bnm_percent
 		@bnmrating = Review.bnm.average_rating
@@ -117,5 +103,3 @@ class Pitchforked < Sinatra::Base
 
 end
 
-
-#Pitchforked.run!
