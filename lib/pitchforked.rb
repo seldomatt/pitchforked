@@ -1,5 +1,8 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'dalli'
+require 'rack-cache'
+
 
 configure :production do
 
@@ -17,8 +20,6 @@ class Pitchforked < Sinatra::Base
 	end
 
 	configure :production do
-
-		require 'newrelic_rpm'
 
 		db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///pitchforked2')
 
@@ -59,10 +60,9 @@ class Pitchforked < Sinatra::Base
 		end
 	end
 
-
 	get '/' do
 
-		cache_control :public, :must_revalidate, :max_age => 60
+		cache_control :public, max_age: 6048000
 
 		@reviews = Review.find(:all)
 		@labels = Label.find(:all)

@@ -4,6 +4,8 @@ gem "activerecord", "~> 3.2.8"
 gem "sinatra", :require => "sinatra/base"
 gem "sinatra-activerecord"
 gem "newrelic_rpm"
+gem 'dalli', '~>1.0.5'
+gem 'rack-cache'
 
 group :development do 
  gem 'sqlite3'
