@@ -85,7 +85,7 @@ class Review < ActiveRecord::Base
   end
 
   def self.avg_rating_per_year
-    self.select('year AS year, count(*) AS count, avg(rating) AS avg').group('year')
+    self.select('year AS year, count(*) AS count, avg(rating) AS avg').group('year').order('year DESC')
   end
 
 
