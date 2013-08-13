@@ -22,3 +22,6 @@ doc/
 
 #vim swp files
 *.swp
+
+#rubymine files
+.idea/

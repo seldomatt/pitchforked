@@ -62,7 +62,7 @@ class Pitchforked < Sinatra::Base
 
 	get '/' do
 
-		cache_control :public, max_age: 6048000
+		cache_control :public, max_age: 60
 
 		@reviews = Review.find(:all)
 		@labels = Label.find(:all)
