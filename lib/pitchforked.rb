@@ -1,7 +1,8 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'dalli'
-require 'rack-cache'
+#require 'rack-cache'
+require 'memcachier'
 
 
 configure :production do
@@ -59,6 +60,8 @@ class Pitchforked < Sinatra::Base
 			end
 		end
 	end
+
+set :cache, Dalli::Client.new  
 
 	get '/' do
 
