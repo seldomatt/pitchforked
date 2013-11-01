@@ -9,7 +9,7 @@ class Review < ActiveRecord::Base
   scope :year, lambda { |year| where(:year => year) }
 
   def self.artist_name_like(str)
-    joins(:album => :artist).where("artists.name like ?", "%#{str}%")
+    joins(:album => :artist).where('artists.name like ?', "%#{str}%")
   end
 
   def self.average_rating
@@ -33,11 +33,11 @@ class Review < ActiveRecord::Base
   end
 
   def self.most_bnm_labels
-    bnm.select("labels.name, count(*) AS count").joins(:album => :label).group("labels.name").order("count DESC").limit(15)
+    bnm.select('labels.name, count(*) AS count').joins(:album => :label).group('labels.name').order('count DESC').limit(15)
   end
 
   def self.most_bnm_artists
-    bnm.select("artists.name, count(*) AS count").joins(:album => :artist).group("artists.name").order("count DESC").limit(25)
+    bnm.select('artists.name, count(*) AS count').joins(:album => :artist).group('artists.name').order('count DESC').limit(25)
   end
 
   def self.perfect_ratings
@@ -73,15 +73,15 @@ class Review < ActiveRecord::Base
   end
 
   def self.band_names 
-    joins(:album => :artist).where("artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ?", "%black%","%bear%","%beach%","%crystal%", "%girls%", "%magic%", "%deer%")
+    joins(:album => :artist).where('artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ? OR artists.name like ?', '%black%','%bear%','%beach%','%crystal%', '%girls%', '%magic%', '%deer%')
   end
 
   def self.body_name_drop(name) 
-    self.where("body like ?", "%#{name}%").count
+    self.where('body like ?', "%#{name}%").count
   end
 
   def self.body_name_drop_by_year(name, year)
-    self.year(year).where("body like ?", "%#{name}%").count
+    self.year(year).where('body like ?', "%#{name}%").count
   end
 
   def self.avg_rating_per_year

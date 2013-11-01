@@ -7,6 +7,7 @@ gem "newrelic_rpm"
 gem 'dalli', '~>1.0.5'
 gem 'memcachier'
 gem 'rack-cache'
+gem 'nokogiri'
 
 group :development do 
  gem 'sqlite3'
