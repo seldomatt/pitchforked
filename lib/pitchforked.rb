@@ -61,7 +61,7 @@ class Pitchforked < Sinatra::Base
 		end
 	end
 
-set :cache, Dalli::Client.new  
+#set :cache, Dalli::Client.new  
 
 	get '/' do
 
