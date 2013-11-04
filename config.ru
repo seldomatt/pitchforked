@@ -5,8 +5,6 @@ Bundler.require
 
 require './lib/pitchforked'
 
-require 'newrelic_rpm'
-
 # Defined in ENV on Heroku. To try locally, start memcached and uncomment:
 #ENV["MEMCACHE_SERVERS"] = "localhost"
 if memcachier_servers = ENV["MEMCACHIER_SERVERS"]

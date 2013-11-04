@@ -8,6 +8,7 @@ gem 'dalli', '~>1.0.5'
 gem 'memcachier'
 gem 'rack-cache'
 gem 'nokogiri'
+gem 'rack-google-analytics'
 
 group :development do 
  gem 'sqlite3'

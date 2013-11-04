@@ -277,7 +277,10 @@ img.bottompics {
     padding-top: 35px;
 }
 
-
+a {
+  color: #CCC;
+  text-decoration: none;
+}
 
 
 

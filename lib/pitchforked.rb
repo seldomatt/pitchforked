@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'dalli'
-#require 'rack-cache'
+require 'rack-cache'
 require 'memcachier'
 
 
@@ -62,10 +62,11 @@ class Pitchforked < Sinatra::Base
 	end
 
 #set :cache, Dalli::Client.new  
+use Rack::GoogleAnalytics, :tracker => 'UA-45409849-1'
 
 	get '/' do
 
-		cache_control :public, max_age: 60
+		cache_control :public, max_age: 604800
 
 		@reviews = Review.find(:all)
 		@labels = Label.find(:all)
