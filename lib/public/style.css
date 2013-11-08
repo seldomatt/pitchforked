@@ -65,12 +65,18 @@ footer {
 .container {
   background-color: #E9E9E9; 
   border-left: solid 40px #E9E9E9;
-  border-right: solid 40px #E9E9E9; 
+  border-right: solid 40px #E9E9E9;
 }
 
 #headerimg {
   width: 1040px;
   margin: 0px;
+}
+
+#headerimgmobile {
+  width: 320px;
+  margin: 0px;
+  display:none;
 }
 
 ol#topline li {
@@ -282,129 +288,51 @@ a {
   text-decoration: none;
 }
 
+/*responsive for mobile*/
+@media only screen and (max-width: 767px) and (orientation:portrait) {
+    body {
+        background-color: #E9E9E9;
+    }
 
+    .container {
+        border-left: solid 0px;
+        border-right: solid 0px;
+    }
 
+    #firsttopline {
+        padding-left: 0px;
+    }
 
+    ol#topline li {
+        margin: 43px 75px;
+    }
 
+    .headerimage {
+        position: relative;
+        margin: 0 auto;
+        width: 320px;
+    }
 
+    #headerimg {
+        display:none;
+    }
 
+    #headerimgmobile {
+        width: 320px;
+        margin: 0px;
+        display:block;
+    }
 
+    #navigation {
+        display:none;
+    }
 
+    #sebadohpic {
+        display:none;
+    }
 
+    footer {
+        width: 326px;
+    }
 
-
-
-
-
-/*body {
-  font-family: Helvetica,Arial,sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  color: #222;
-  line-height: 20px;
-  background-color: #353535;
 }
-
-h2 {
-  font-size: 16px;
-  border-bottom: solid #EF4135 1px;
-  padding: 5px;
-}
-
-#content {
-  background-color: #E9E9E9;
-  opacity: 50%;
-  width: 1000px;
-  margin: 0 auto;
-  padding: 40px;
-}
-
-.sectiongroup {
-  border-top: solid #EF4135 5px;
-  margin: 5px;
-  width: ;
-}
-
-
-section {
-  background-color:white;
-  padding: 20px;
-}
-
-#headerimg {
-  width: 990px;
-}
-
-ol#topline li {
-  float: left;
-  margin: 60px;
-  background-color: red;
-}
-
-.med {
-  font-size: 20px;
-  width: 150px;
-  text-align: center;
-}
-
-.big {
-  font-size: 50px;
-  line-height: 50px;
-  width: 150px;
-  text-align: center;
-}
-
-#overall {
-  height: 100px;
-  padding-bottom: 75px;
-  border-top: 5px solid black;
-}
-
-.tableimg {
-  width: 330px;
-}
-
-img#pearls {
-  display: inline;
-}
-
-section.last {
-  clear: right;
-}
-
-th {
-  padding: 2px 5px;
-}
-
-td {
-  color: #666;
-  padding: 2px 5px;
-}
-
-td h2 {
-  color: black;
-}
-
-h3 {
-  font-size: 11px;
-  color: #EF4135;
-  background: white;
-  padding: 5px;
-}
-
-.nestedtable {
-  width: 100%;
-}
-
-.nestedtd {
-  valign: top;
-  width: 33%;
-}
-
-.nestedtddouble {
-
-  width: 50%;
-}
-
-
-*/
