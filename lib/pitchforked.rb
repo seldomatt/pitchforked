@@ -61,7 +61,6 @@ class Pitchforked < Sinatra::Base
 		end
 	end
 
-  settings.cache.flush
 use Rack::GoogleAnalytics, :tracker => 'UA-45409849-1'
 
 	get '/' do
