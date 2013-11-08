@@ -61,7 +61,7 @@ class Pitchforked < Sinatra::Base
 		end
 	end
 
-#set :cache, Dalli::Client.new  
+  settings.cache.flush
 use Rack::GoogleAnalytics, :tracker => 'UA-45409849-1'
 
 	get '/' do

@@ -37,7 +37,8 @@ class Review < ActiveRecord::Base
   end
 
   def self.most_bnm_artists
-    bnm.select('artists.name, count(*) AS count').joins(:album => :artist).group('artists.name').order('count DESC').limit(25)
+    artists = bnm.select('artists.name, count(*) AS count').joins(:album => :artist).group('artists.name').order('count DESC').limit(26)
+    artists.reject {|a| a.name == "Various Artists"}
   end
 
   def self.perfect_ratings
