@@ -65,7 +65,7 @@ use Rack::GoogleAnalytics, :tracker => 'UA-45409849-1'
 
 	get '/' do
 
-		cache_control :public, max_age: 604800
+		cache_control :public, max_age: 60
 
 		@reviews = Review.find(:all)
 		@labels = Label.find(:all)
